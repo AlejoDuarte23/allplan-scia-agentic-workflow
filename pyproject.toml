@@ -1,0 +1,20 @@
+[project]
+name = "allplan-scia-agentic-workflow"
+version = "0.1.0"
+description = "VIKTOR agentic workflow template with chat, workflow graph tools, and VIKTOR API tools."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=2.14.0",
+    "openai-agents>=0.6.4",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+    "requests>=2.32.5",
+    "viktor",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.0",
+    "ruff>=0.14.0",
+]

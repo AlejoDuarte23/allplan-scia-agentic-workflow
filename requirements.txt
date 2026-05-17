@@ -1,0 +1,6 @@
+viktor
+openai>=2.14.0
+openai-agents>=0.6.4
+pydantic>=2.12.5
+python-dotenv>=1.2.1
+requests>=2.32.5
