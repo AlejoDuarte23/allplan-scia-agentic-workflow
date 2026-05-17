@@ -121,6 +121,7 @@ def inspect_viktor_app_tool() -> Any:
         ),
         params_json_schema=InspectViktorAppArgs.model_json_schema(),
         on_invoke_tool=inspect_viktor_app_func,
+        strict_json_schema=False,
     )
 
 
@@ -185,6 +186,7 @@ def run_viktor_app_method_tool() -> Any:
         ),
         params_json_schema=RunViktorAppMethodArgs.model_json_schema(),
         on_invoke_tool=run_viktor_app_method_func,
+        strict_json_schema=False,
     )
 
 
@@ -240,6 +242,7 @@ def create_viktor_sibling_entity_tool() -> Any:
         ),
         params_json_schema=CreateViktorSiblingEntityArgs.model_json_schema(),
         on_invoke_tool=create_viktor_sibling_entity_func,
+        strict_json_schema=False,
     )
 
 
@@ -516,6 +519,7 @@ def generate_viktor_bridge_code_tool() -> Any:
         ),
         params_json_schema=GenerateViktorBridgeCodeArgs.model_json_schema(),
         on_invoke_tool=generate_viktor_bridge_code_func,
+        strict_json_schema=False,
     )
 
 
@@ -541,6 +545,7 @@ def save_workflow_code_tool() -> Any:
         description="Save generated code or notes into the Monaco workflow code WebView.",
         params_json_schema=SaveWorkflowCodeArgs.model_json_schema(),
         on_invoke_tool=save_workflow_code_func,
+        strict_json_schema=False,
     )
 
 

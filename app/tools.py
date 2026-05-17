@@ -78,6 +78,7 @@ def create_dummy_workflow_node_tool() -> Any:
         description="Validate a workflow node payload before graph composition.",
         params_json_schema=DummyWorkflowNode.model_json_schema(),
         on_invoke_tool=create_dummy_workflow_node_func,
+        strict_json_schema=False,
     )
 
 
@@ -183,6 +184,7 @@ def compose_workflow_graph_tool() -> Any:
         description="Compose nodes into a workflow_graph DAG and render it in the app.",
         params_json_schema=ComposeWorkflowGraphArgs.model_json_schema(),
         on_invoke_tool=compose_workflow_graph_func,
+        strict_json_schema=False,
     )
 
 
