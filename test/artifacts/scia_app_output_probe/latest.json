@@ -1,0 +1,105 @@
+{
+  "entity_id": 12040,
+  "entity_name": "Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z",
+  "esa_file": null,
+  "probes": [
+    {
+      "method": "view_results",
+      "status": "failed",
+      "kind": "result",
+      "error": {
+        "type": "error_user",
+        "message": "Please upload a SCIA .esa template file on the 'Run SCIA Analysis' step.",
+        "invalid_fields": {}
+      },
+      "result_summary": {
+        "type": "NoneType",
+        "value": null
+      },
+      "log_download_url": null
+    },
+    {
+      "method": "view_pile_reactions",
+      "status": "failed",
+      "kind": "result",
+      "error": {
+        "type": "error_user",
+        "message": "Please upload a SCIA .esa template file on the 'Run SCIA Analysis' step.",
+        "invalid_fields": {}
+      },
+      "result_summary": {
+        "type": "NoneType",
+        "value": null
+      },
+      "log_download_url": null
+    },
+    {
+      "method": "view_2d_internal_forces",
+      "status": "failed",
+      "kind": "result",
+      "error": {
+        "type": "error_user",
+        "message": "Please upload a SCIA .esa template file on the 'Run SCIA Analysis' step.",
+        "invalid_fields": {}
+      },
+      "result_summary": {
+        "type": "NoneType",
+        "value": null
+      },
+      "log_download_url": null
+    },
+    {
+      "method": "view_geometry",
+      "status": "success",
+      "kind": "result",
+      "error": {
+        "type": "",
+        "message": "",
+        "invalid_fields": null,
+        "stack_trace": null
+      },
+      "result_summary": {
+        "keys": [
+          "geometry"
+        ],
+        "geometry": {
+          "type": "dict",
+          "keys": [
+            "geometry",
+            "geometry_type",
+            "labels"
+          ],
+          "sample": {
+            "geometry": "https://viktor-storage-eu1.s3.amazonaws.com/tmp/913a78a8-483a-4e3b-956f-56f2acedb18f/viktor.gltf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWJWJ6TMJGMQGN5X%2F20260518%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260518T011329Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6b2e59c9ffe3eaf811bd542303b8ff4d5d2c798ebbda8baeedf863c25c2040b5",
+            "geometry_type": "gltf",
+            "labels": [
+              {
+                "color": "#000000",
+                "html": "\u2300 20 m slab",
+                "size_factor": 1,
+                "text": [
+                  "\u2300 20 m slab"
+                ],
+                "x": 0,
+                "y": 0,
+                "z": 3.3
+              },
+              {
+                "color": "#000000",
+                "html": "\u2300 4.2 m mast",
+                "size_factor": 1,
+                "text": [
+                  "\u2300 4.2 m mast"
+                ],
+                "x": 2.3000000000000003,
+                "y": 0,
+                "z": 3.25
+              }
+            ]
+          }
+        }
+      },
+      "log_download_url": null
+    }
+  ]
+}

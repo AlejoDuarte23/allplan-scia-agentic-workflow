@@ -1,0 +1,560 @@
+{
+  "run_at": "2026-05-17T22:26:28.059740+00:00",
+  "model": "gpt-5.4",
+  "app_a_url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039",
+  "app_b_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12038",
+  "agent_output": {
+    "run_summary": {
+      "inspect_viktor_apps_used": 1,
+      "read_only": true,
+      "app_a_role": "turbine data app",
+      "app_b_role": "foundation/SCIA app",
+      "conclusion": "A small but useful bridge is supported: App A can provide mast/tower interface diameter and base loads to App B. Foundation geometry, pile layout, soil springs, and SCIA template upload are not available from App A."
+    },
+    "app_a": {
+      "identity": {
+        "entity_name": "Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1",
+        "entity_type_name": "Controller",
+        "editor_url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039"
+      },
+      "parametrization": {
+        "fields": [
+          {
+            "path": "turbine_model",
+            "label": "Turbine model",
+            "type": "select",
+            "description": "Select one of the 10 most common state-of-the-art onshore wind turbines.",
+            "default": "Vestas V150-4.5 MW",
+            "saved_value": "Siemens Gamesa SG 5.0-145",
+            "options": [
+              "Vestas V150-4.5 MW",
+              "Vestas V162-6.2 MW",
+              "Siemens Gamesa SG 5.0-145",
+              "Siemens Gamesa SG 6.6-170",
+              "GE Vernova 4.5-158",
+              "Nordex N163/5.X",
+              "Enercon E-160 EP5",
+              "Goldwind GW175-6.0",
+              "Envision EN-156/4.5",
+              "Ming Yang MySE 5.5-155"
+            ]
+          }
+        ],
+        "defaults_vs_saved": {
+          "changed_from_default": [
+            {
+              "path": "turbine_model",
+              "default": "Vestas V150-4.5 MW",
+              "saved_value": "Siemens Gamesa SG 5.0-145"
+            }
+          ],
+          "unchanged": []
+        }
+      },
+      "payload_template": {
+        "turbine_model": "Siemens Gamesa SG 5.0-145"
+      },
+      "available_result_view_methods": [
+        {
+          "method_name": "view_turbine_data",
+          "label": "Turbine Parameters",
+          "kind": "data",
+          "automatic_update": true
+        },
+        {
+          "method_name": "view_schematic",
+          "label": "Turbine Schematic",
+          "kind": "plotly",
+          "automatic_update": true
+        },
+        {
+          "method_name": "view_comparison",
+          "label": "Turbine Comparison",
+          "kind": "plotly",
+          "automatic_update": true
+        }
+      ],
+      "proven_outputs_from_result_probe": {
+        "source_method": "view_turbine_data",
+        "values": [
+          {
+            "key": "capacity",
+            "label": "Rated capacity",
+            "value": 5,
+            "unit": "MW"
+          },
+          {
+            "key": "hub_height",
+            "label": "Hub height",
+            "value": 105,
+            "unit": "m"
+          },
+          {
+            "key": "base_diameter",
+            "label": "Base diameter",
+            "value": 4.2,
+            "unit": "m"
+          },
+          {
+            "key": "base_moment",
+            "label": "Max. moment at base",
+            "value": 155925,
+            "unit": "kNm"
+          },
+          {
+            "key": "base_horiz_force",
+            "label": "Max. horizontal force at base",
+            "value": 1485,
+            "unit": "kN"
+          },
+          {
+            "key": "base_vert_force",
+            "label": "Max. vertical force at base",
+            "value": 3973,
+            "unit": "kN"
+          },
+          {
+            "key": "rna_weight",
+            "label": "Rotor-Nacelle Assembly (RNA)",
+            "value": 110,
+            "unit": "t"
+          },
+          {
+            "key": "tower_weight",
+            "label": "Tower",
+            "value": 295,
+            "unit": "t"
+          },
+          {
+            "key": "total_weight",
+            "label": "Total turbine weight",
+            "value": 405,
+            "unit": "t"
+          }
+        ]
+      }
+    },
+    "app_b": {
+      "identity": {
+        "entity_name": "Agent sibling smoke 2026-05-17T22:08:42 - Alejandro Test",
+        "entity_type_name": "Controller",
+        "editor_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12038"
+      },
+      "parametrization": {
+        "fields": [
+          {
+            "path": "step_geo.sec_mast.mast_diameter",
+            "label": "Mast diameter",
+            "type": "number",
+            "description": "Outer diameter of the wind turbine mast at the foundation interface.",
+            "default": 5,
+            "saved_value": 3
+          },
+          {
+            "path": "step_geo.sec_mast.mast_vertical_load",
+            "label": "Vertical Force",
+            "type": "number",
+            "description": "Vertical force applied at the mast ring (positive = downward).",
+            "default": 4000,
+            "saved_value": 4000
+          },
+          {
+            "path": "step_geo.sec_mast.mast_horizontal_load",
+            "label": "Horizontal Force",
+            "type": "number",
+            "description": "Horizontal force applied at the mast ring.",
+            "default": 1500,
+            "saved_value": 1500
+          },
+          {
+            "path": "step_geo.sec_mast.mast_moment",
+            "label": "Overturning Moment",
+            "type": "number",
+            "description": "Overturning moment applied at the mast ring (e.g. from wind on the turbine).",
+            "default": 150000,
+            "saved_value": 150000
+          },
+          {
+            "path": "step_geo.sec_slab.slab_diameter",
+            "label": "Slab diameter",
+            "type": "number",
+            "description": "Outer diameter of the circular concrete slab.",
+            "default": 20,
+            "saved_value": 8
+          },
+          {
+            "path": "step_geo.sec_slab.slab_thickness",
+            "label": "Slab thickness",
+            "type": "number",
+            "description": "Thickness of the concrete slab.",
+            "default": 3,
+            "saved_value": 0.5
+          },
+          {
+            "path": "step_geo.sec_piles.num_piles",
+            "label": "Number of piles",
+            "type": "integer",
+            "description": "Number of piles evenly spaced on the pile circle.",
+            "default": 30,
+            "saved_value": 16
+          },
+          {
+            "path": "step_geo.sec_piles.pile_length",
+            "label": "Pile length",
+            "type": "number",
+            "description": "Length of each pile below the slab.",
+            "default": 20,
+            "saved_value": 10
+          },
+          {
+            "path": "step_geo.sec_piles.pile_diameter",
+            "label": "Pile diameter",
+            "type": "number",
+            "description": "Diameter of each circular concrete pile.",
+            "default": 500,
+            "saved_value": 400
+          },
+          {
+            "path": "step_geo.sec_piles.pile_edge_distance",
+            "label": "Edge distance (slab edge \u2192 pile centre)",
+            "type": "number",
+            "description": "Horizontal distance from the slab edge to the centre of the piles.",
+            "default": 600,
+            "saved_value": 600
+          },
+          {
+            "path": "step_geo_tech.sec_tip.tip_stiffness",
+            "label": "Axial spring stiffness at pile tip",
+            "type": "number",
+            "description": "Vertical spring stiffness representing the soil resistance at the pile tip (end-bearing component). Typical range: 10 000 \u2013 200 000 kN/m depending on soil type and pile geometry.",
+            "default": 50000,
+            "saved_value": 50000
+          },
+          {
+            "path": "step_geo_tech.sec_lateral.lateral_stiffness",
+            "label": "Horizontal spring stiffness (per unit length)",
+            "type": "number",
+            "description": "Distributed horizontal (lateral) spring stiffness along the pile shaft, representing the subgrade reaction of the surrounding soil. Typical range: 5 000 \u2013 50 000 kN/m/m for medium-dense sand/clay.",
+            "default": 10000,
+            "saved_value": 10000
+          },
+          {
+            "path": "step_analysis.esa_file",
+            "label": "SCIA template (.esa)",
+            "type": "file",
+            "description": "Upload the SCIA .esa template file. Must contain materials 'C30/37' and 'concrete_slab', and an I/O document named 'output' with Reactions for Combinations.",
+            "default": null,
+            "saved_value": null
+          }
+        ],
+        "defaults_vs_saved": {
+          "changed_from_default": [
+            {
+              "path": "step_geo.sec_mast.mast_diameter",
+              "default": 5,
+              "saved_value": 3
+            },
+            {
+              "path": "step_geo.sec_slab.slab_diameter",
+              "default": 20,
+              "saved_value": 8
+            },
+            {
+              "path": "step_geo.sec_slab.slab_thickness",
+              "default": 3,
+              "saved_value": 0.5
+            },
+            {
+              "path": "step_geo.sec_piles.num_piles",
+              "default": 30,
+              "saved_value": 16
+            },
+            {
+              "path": "step_geo.sec_piles.pile_length",
+              "default": 20,
+              "saved_value": 10
+            },
+            {
+              "path": "step_geo.sec_piles.pile_diameter",
+              "default": 500,
+              "saved_value": 400
+            }
+          ],
+          "unchanged": [
+            {
+              "path": "step_geo.sec_mast.mast_vertical_load",
+              "default": 4000,
+              "saved_value": 4000
+            },
+            {
+              "path": "step_geo.sec_mast.mast_horizontal_load",
+              "default": 1500,
+              "saved_value": 1500
+            },
+            {
+              "path": "step_geo.sec_mast.mast_moment",
+              "default": 150000,
+              "saved_value": 150000
+            },
+            {
+              "path": "step_geo.sec_piles.pile_edge_distance",
+              "default": 600,
+              "saved_value": 600
+            },
+            {
+              "path": "step_geo_tech.sec_tip.tip_stiffness",
+              "default": 50000,
+              "saved_value": 50000
+            },
+            {
+              "path": "step_geo_tech.sec_lateral.lateral_stiffness",
+              "default": 10000,
+              "saved_value": 10000
+            },
+            {
+              "path": "step_analysis.esa_file",
+              "default": null,
+              "saved_value": null
+            }
+          ]
+        }
+      },
+      "payload_template": {
+        "step_geo": {
+          "sec_mast": {
+            "mast_diameter": 3,
+            "mast_vertical_load": 4000,
+            "mast_horizontal_load": 1500,
+            "mast_moment": 150000
+          },
+          "sec_slab": {
+            "slab_diameter": 8,
+            "slab_thickness": 0.5
+          },
+          "sec_piles": {
+            "num_piles": 16,
+            "pile_length": 10,
+            "pile_diameter": 400,
+            "pile_edge_distance": 600
+          }
+        },
+        "step_geo_tech": {
+          "sec_tip": {
+            "tip_stiffness": 50000
+          },
+          "sec_lateral": {
+            "lateral_stiffness": 10000
+          }
+        },
+        "step_analysis": {
+          "esa_file": null
+        }
+      },
+      "available_result_view_methods": [
+        {
+          "method_name": "view_geometry",
+          "label": "3D Geometry",
+          "kind": "geometry",
+          "automatic_update": true
+        },
+        {
+          "method_name": "view_results",
+          "label": "Results Summary",
+          "kind": "data",
+          "automatic_update": false
+        },
+        {
+          "method_name": "view_pile_reactions",
+          "label": "Pile Reactions",
+          "kind": "table",
+          "automatic_update": false
+        },
+        {
+          "method_name": "view_2d_internal_forces",
+          "label": "2D Internal Forces",
+          "kind": "table",
+          "automatic_update": false
+        },
+        {
+          "method_name": "view_mxd_plus_plot",
+          "label": "2D Moment Contour Plots",
+          "kind": "plotly",
+          "automatic_update": false
+        }
+      ],
+      "available_actions": [
+        {
+          "method_name": "download_scia_input_xml",
+          "label": "Download SCIA input XML",
+          "kind": "download-button"
+        },
+        {
+          "method_name": "download_scia_input_def",
+          "label": "Download SCIA .def file",
+          "kind": "download-button"
+        }
+      ]
+    },
+    "candidate_flow_app_a_to_app_b": [
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "base_diameter",
+          "label": "Base diameter",
+          "value": 4.2,
+          "unit": "m"
+        },
+        "to_app_b": {
+          "path": "step_geo.sec_mast.mast_diameter",
+          "label": "Mast diameter",
+          "unit": "m"
+        },
+        "status": "direct_match",
+        "inferred": false,
+        "reason": "Both describe outer diameter at the turbine/mast foundation interface."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "base_vert_force",
+          "label": "Max. vertical force at base",
+          "value": 3973,
+          "unit": "kN"
+        },
+        "to_app_b": {
+          "path": "step_geo.sec_mast.mast_vertical_load",
+          "label": "Vertical Force",
+          "unit": "kN"
+        },
+        "status": "direct_match",
+        "inferred": false,
+        "reason": "Both are vertical force transferred at mast ring/base; magnitudes also align closely with App B saved value 4000 kN."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "base_horiz_force",
+          "label": "Max. horizontal force at base",
+          "value": 1485,
+          "unit": "kN"
+        },
+        "to_app_b": {
+          "path": "step_geo.sec_mast.mast_horizontal_load",
+          "label": "Horizontal Force",
+          "unit": "kN"
+        },
+        "status": "direct_match",
+        "inferred": false,
+        "reason": "Both are horizontal force at the mast/base interface; App B saved value 1500 kN is nearly identical."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "base_moment",
+          "label": "Max. moment at base",
+          "value": 155925,
+          "unit": "kNm"
+        },
+        "to_app_b": {
+          "path": "step_geo.sec_mast.mast_moment",
+          "label": "Overturning Moment",
+          "unit": "kNm"
+        },
+        "status": "direct_match",
+        "inferred": false,
+        "reason": "Both describe overturning/base moment applied at the mast ring; App B saved value 150000 kNm is close."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "hub_height",
+          "label": "Hub height",
+          "value": 105,
+          "unit": "m"
+        },
+        "to_app_b": null,
+        "status": "no_matching_input",
+        "inferred": false,
+        "reason": "App B has no hub-height input field."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "capacity",
+          "label": "Rated capacity",
+          "value": 5,
+          "unit": "MW"
+        },
+        "to_app_b": null,
+        "status": "no_matching_input",
+        "inferred": false,
+        "reason": "App B has no rated-capacity input field."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "rna_weight",
+          "label": "Rotor-Nacelle Assembly (RNA)",
+          "value": 110,
+          "unit": "t"
+        },
+        "to_app_b": null,
+        "status": "no_matching_input",
+        "inferred": false,
+        "reason": "App B does not expose separate RNA weight input."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "tower_weight",
+          "label": "Tower",
+          "value": 295,
+          "unit": "t"
+        },
+        "to_app_b": null,
+        "status": "no_matching_input",
+        "inferred": false,
+        "reason": "App B does not expose tower self-weight input."
+      },
+      {
+        "from_app_a": {
+          "source": "result_probe:view_turbine_data",
+          "key": "total_weight",
+          "label": "Total turbine weight",
+          "value": 405,
+          "unit": "t"
+        },
+        "to_app_b": {
+          "path": "step_geo.sec_mast.mast_vertical_load",
+          "label": "Vertical Force",
+          "unit": "kN"
+        },
+        "status": "possible_derived_mapping",
+        "inferred": true,
+        "reason": "Engineering meaning suggests total weight can be converted to vertical force via g, and App A\u2019s probed base_vert_force explanation already does this. Prefer the directly proven base_vert_force output over recalculating from total_weight."
+      }
+    ],
+    "gaps_before_bridge_code": [
+      {
+        "gap": "Unit handling/conventions should be fixed in code.",
+        "detail": "The direct mappings appear consistent as m\u2192m and kN/kNm\u2192kN/kNm, but bridge code should still validate units and sign conventions, especially vertical load positive downward and overturning moment orientation."
+      },
+      {
+        "gap": "No App A source for foundation geometry.",
+        "detail": "App B slab diameter, slab thickness, number of piles, pile length, pile diameter, and pile edge distance must remain user inputs or come from another app."
+      },
+      {
+        "gap": "No App A source for soil-structure interaction parameters.",
+        "detail": "App B tip stiffness and lateral stiffness have no matching App A inputs/results."
+      },
+      {
+        "gap": "No App A source for SCIA template upload.",
+        "detail": "App B requires/accepts an .esa file upload; App A provides no matching file output/input in schema."
+      },
+      {
+        "gap": "Only one App A result method was probed.",
+        "detail": "The proven transferable values come from view_turbine_data. Schematic/comparison views exist but were not needed and should not be assumed to expose extra machine-readable bridge fields."
+      }
+    ]
+  }
+}

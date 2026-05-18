@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 from app.viktor_tools.table_tool import generate_table, show_hide_table_tool
 from app.viktor_api_tool import get_viktor_api_tools
+from app.viktor_api_tool.local_shell import create_viktor_local_shell_tool
 from app.workflow_graph.models import (
     Connection,
     Node,
@@ -31,7 +32,8 @@ TOOL_DISPLAY_NAMES: dict[str, str] = {
     "generate_viktor_bridge_code": "Generate VIKTOR Bridge Code",
     "save_workflow_code": "Save Workflow Code",
     "show_hide_code_editor": "Show/Hide Code Editor",
-    "run_openai_shell_viktor_task": "OpenAI Shell VIKTOR Task",
+    "viktor_local_shell": "VIKTOR Local Shell",
+    "shell": "VIKTOR Local Shell",
     "generate_table": "Generate Table",
     "show_hide_table": "Show/Hide Table",
 }
@@ -330,7 +332,10 @@ async def get_workflow_plan_func(_ctx: Any, args: str) -> str:
 
 async def set_workflow_plan_func(_ctx: Any, args: str) -> str:
     payload = SetWorkflowPlanArgs.model_validate_json(args)
-    state = _require_canvas_state()
+    try:
+        state = _require_canvas_state()
+    except ValueError as exc:
+        return _missing_workflow_plan_response(reason=str(exc))
     state.plan = WorkflowPlan(
         id=state.plan.id if state.plan else "workflow-plan",
         title=payload.title,
@@ -352,9 +357,14 @@ async def set_workflow_plan_func(_ctx: Any, args: str) -> str:
 
 async def update_workflow_plan_func(_ctx: Any, args: str) -> str:
     payload = UpdateWorkflowPlanArgs.model_validate_json(args)
-    state = _require_canvas_state()
+    try:
+        state = _require_canvas_state()
+    except ValueError as exc:
+        return _missing_workflow_plan_response(reason=str(exc))
     if state.plan is None:
-        raise ValueError("No workflow plan exists yet. Run set_workflow_plan first.")
+        return _missing_workflow_plan_response(
+            reason="No workflow plan exists yet. Run set_workflow_plan first."
+        )
 
     todos_by_id = {todo.id: todo for todo in state.plan.todos}
     missing_ids: list[str] = []
@@ -413,7 +423,10 @@ async def update_workflow_plan_func(_ctx: Any, args: str) -> str:
 
 async def set_workflow_progress_func(_ctx: Any, args: str) -> str:
     payload = SetWorkflowProgressArgs.model_validate_json(args)
-    state = _require_canvas_state()
+    try:
+        state = _require_canvas_state()
+    except ValueError as exc:
+        return _missing_workflow_plan_response(reason=str(exc))
 
     if payload.clear:
         state.progress = None
@@ -449,6 +462,7 @@ def get_workflow_plan_tool() -> Any:
         ),
         params_json_schema=GetWorkflowPlanArgs.model_json_schema(),
         on_invoke_tool=get_workflow_plan_func,
+        strict_json_schema=False,
     )
 
 
@@ -460,6 +474,7 @@ def set_workflow_plan_tool() -> Any:
         description="Create or replace the workflow plan card shown on the graph.",
         params_json_schema=SetWorkflowPlanArgs.model_json_schema(),
         on_invoke_tool=set_workflow_plan_func,
+        strict_json_schema=False,
     )
 
 
@@ -471,6 +486,7 @@ def update_workflow_plan_tool() -> Any:
         description="Update existing todo labels, descriptions, and statuses.",
         params_json_schema=UpdateWorkflowPlanArgs.model_json_schema(),
         on_invoke_tool=update_workflow_plan_func,
+        strict_json_schema=False,
     )
 
 
@@ -482,6 +498,7 @@ def set_workflow_progress_tool() -> Any:
         description="Show, replace, or clear detailed execution progress.",
         params_json_schema=SetWorkflowProgressArgs.model_json_schema(),
         on_invoke_tool=set_workflow_progress_func,
+        strict_json_schema=False,
     )
 
 
@@ -494,6 +511,7 @@ def get_tools() -> list[Any]:
         update_workflow_plan_tool(),
         set_workflow_progress_tool(),
         *get_viktor_api_tools(),
+        create_viktor_local_shell_tool(),
         generate_table(),
         show_hide_table_tool(),
     ]

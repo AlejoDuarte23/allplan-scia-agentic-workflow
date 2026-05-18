@@ -70,6 +70,7 @@ def generate_table() -> Any:
         ),
         params_json_schema=TableTool.model_json_schema(),
         on_invoke_tool=display_table_func,
+        strict_json_schema=False,
     )
 
 
@@ -84,4 +85,5 @@ def show_hide_table_tool() -> Any:
         ),
         params_json_schema=ShowHideTableArgs.model_json_schema(),
         on_invoke_tool=show_hide_table_func,
+        strict_json_schema=False,
     )

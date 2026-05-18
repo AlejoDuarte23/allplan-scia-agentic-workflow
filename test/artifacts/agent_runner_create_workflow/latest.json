@@ -1,0 +1,24 @@
+{
+  "model": "gpt-5.4",
+  "final_output": "Done. The workflow graph \u201cAgent Runner Smoke\u201d was created with the requested 3 nodes and dependencies.",
+  "workflow_name": "Agent Runner Smoke",
+  "node_ids": [
+    "source",
+    "scia",
+    "report"
+  ],
+  "depends_on": {
+    "source": [],
+    "scia": [
+      "source"
+    ],
+    "report": [
+      "scia"
+    ]
+  },
+  "plan_ids": [
+    "source",
+    "scia",
+    "report"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "model": "gpt-5.4",
+  "final_output": "Done \u2014 graph created and `three_url_workflow.md` saved and shown in the code editor.",
+  "workflow_name": "Three URL Smoke",
+  "node_ids": [
+    "loads_app",
+    "foundation_app",
+    "rebar_app"
+  ],
+  "depends_on": {
+    "loads_app": [],
+    "foundation_app": [
+      "loads_app"
+    ],
+    "rebar_app": [
+      "foundation_app"
+    ]
+  },
+  "urls_by_node": {
+    "loads_app": "https://demo.viktor.ai/workspaces/2544/app/editor/12039",
+    "foundation_app": "https://demo.viktor.ai/workspaces/2515/app/editor/12040",
+    "rebar_app": "https://demo.viktor.ai/workspaces/2541/app/"
+  },
+  "plan_ids": [
+    "loads_app",
+    "foundation_app",
+    "rebar_app"
+  ],
+  "stored_keys": [
+    "entity:show_viktor_code_editor",
+    "entity:viktor_workflow_code_files",
+    "entity:workflow_graph_state",
+    "entity:workflow_html"
+  ],
+  "workflow_graph_state_stored": true,
+  "code_files": {
+    "three_url_workflow.md": "- URL 1 is assumed to be the source/load candidate until inspection confirms it.\n- URL 2 and URL 3 are downstream candidates.\n- Downstream defaults and saved values must be preserved for inputs not clearly supplied by upstream outputs.\n- Mappings are candidate until actual DataView/TableView outputs are inspected."
+  },
+  "code_visibility": "show"
+}

@@ -1,0 +1,127 @@
+{
+  "run_at": "2026-05-18T00:56:28.057893+00:00",
+  "model": "gpt-5.4",
+  "second_app_url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039",
+  "third_app_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12040",
+  "result": {
+    "final_output": "{\n  \"second_app\": {\n    \"url\": \"https://demo.viktor.ai/workspaces/2544/app/editor/12039\",\n    \"entity_id\": 12039,\n    \"name\": \"Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1\",\n    \"turbine_model\": \"Siemens Gamesa SG 5.0-145\"\n  },\n  \"third_app\": {\n    \"url\": \"https://demo.viktor.ai/workspaces/2515/app/editor/12040\",\n    \"entity_id\": 12040,\n    \"name\": \"Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z\"\n  },\n  \"second_app_outputs\": {\n    \"capacity\": {\n      \"value\": 5,\n      \"unit\": \"MW\",\n      \"label\": \"Rated capacity\",\n      \"group\": \"general\"\n    },\n    \"hub_height\": {\n      \"value\": 105,\n      \"unit\": \"m\",\n      \"label\": \"Hub height\",\n      \"group\": \"general\"\n    },\n    \"base_diameter\": {\n      \"value\": 4.2,\n      \"unit\": \"m\",\n      \"label\": \"Base diameter\",\n      \"group\": \"tower\"\n    },\n    \"base_moment\": {\n      \"value\": 155925,\n      \"unit\": \"kNm\",\n      \"label\": \"Max. moment at base\",\n      \"group\": \"tower\"\n    },\n    \"base_horiz_force\": {\n      \"value\": 1485,\n      \"unit\": \"kN\",\n      \"label\": \"Max. horizontal force at base\",\n      \"group\": \"tower\"\n    },\n    \"base_vert_force\": {\n      \"value\": 3973,\n      \"unit\": \"kN\",\n      \"label\": \"Max. vertical force at base\",\n      \"group\": \"tower\"\n    },\n    \"rna_weight\": {\n      \"value\": 110,\n      \"unit\": \"t\",\n      \"label\": \"Rotor-Nacelle Assembly (RNA)\",\n      \"group\": \"weight\"\n    },\n    \"tower_weight\": {\n      \"value\": 295,\n      \"unit\": \"t\",\n      \"label\": \"Tower\",\n      \"group\": \"weight\"\n    },\n    \"total_weight\": {\n      \"value\": 405,\n      \"unit\": \"t\",\n      \"label\": \"Total turbine weight\",\n      \"group\": \"weight\"\n    }\n  },\n  \"mapping_checks\": [\n    {\n      \"from\": \"base_diameter\",\n      \"to\": \"step_geo.sec_mast.mast_diameter\",\n      \"source_value\": 4.2,\n      \"source_unit\": \"m\",\n      \"third_app_value\": 4.2,\n      \"match\": true\n    },\n    {\n      \"from\": \"base_vert_force\",\n      \"to\": \"step_geo.sec_mast.mast_vertical_load\",\n      \"source_value\": 3973,\n      \"source_unit\": \"kN\",\n      \"third_app_value\": 3973,\n      \"match\": true\n    },\n    {\n      \"from\": \"base_horiz_force\",\n      \"to\": \"step_geo.sec_mast.mast_horizontal_load\",\n      \"source_value\": 1485,\n      \"source_unit\": \"kN\",\n      \"third_app_value\": 1485,\n      \"match\": true\n    },\n    {\n      \"from\": \"base_moment\",\n      \"to\": \"step_geo.sec_mast.mast_moment\",\n      \"source_value\": 155925,\n      \"source_unit\": \"kNm\",\n      \"third_app_value\": 155925,\n      \"match\": true\n    }\n  ],\n  \"all_mapped_values_match\": true\n}",
+    "working_directory": "/var/folders/44/k6_fk1px2wq56yfzkvtchqy00000gn/T/viktor-local-shell/20260518T005530068593",
+    "allowed_domains": [
+      "demo.viktor.ai"
+    ],
+    "commands": [
+      {
+        "command": "python -c \"import base64; exec(base64.b64decode('CmltcG9ydCBqc29uLCBvcywgcmUsIHRpbWUKZnJvbSB1cmxsaWIuZXJyb3IgaW1wb3J0IEhUVFBFcnJvcgpmcm9tIHVybGxpYi5wYXJzZSBpbXBvcnQgdXJsZW5jb2RlCmZyb20gdXJsbGliLnJlcXVlc3QgaW1wb3J0IFJlcXVlc3QsIHVybG9wZW4KClNFQ09ORF9BUFBfVVJMID0gJ2h0dHBzOi8vZGVtby52aWt0b3IuYWkvd29ya3NwYWNlcy8yNTQ0L2FwcC9lZGl0b3IvMTIwMzknClRISVJEX0FQUF9VUkwgPSAnaHR0cHM6Ly9kZW1vLnZpa3Rvci5haS93b3Jrc3BhY2VzLzI1MTUvYXBwL2VkaXRvci8xMjA0MCcKVE9LRU4gPSBvcy5lbnZpcm9uWyJUT0tFTl9WS19BUFAiXQpFRElUT1JfVVJMX1JFID0gcmUuY29tcGlsZShyIl5odHRwcz86Ly8oP1A8aG9zdD5bXi9dKykvd29ya3NwYWNlcy8oP1A8d29ya3NwYWNlX2lkPlxkKykvYXBwL2VkaXRvci8oP1A8ZW50aXR5X2lkPlxkKykoPzpbLz8jXS4qKT8kIikKCmRlZiBwYXJzZV9lZGl0b3JfdXJsKHVybCk6CiAgICBtYXRjaCA9IEVESVRPUl9VUkxfUkUubWF0Y2godXJsKQogICAgaWYgbm90IG1hdGNoOgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoIlVuc3VwcG9ydGVkIGVkaXRvciBVUkw6ICIgKyB1cmwpCiAgICByZXR1cm4gZiJodHRwczovL3ttYXRjaC5ncm91cCgnaG9zdCcpfS9hcGkiLCBpbnQobWF0Y2guZ3JvdXAoIndvcmtzcGFjZV9pZCIpKSwgaW50KG1hdGNoLmdyb3VwKCJlbnRpdHlfaWQiKSkKCmRlZiByZXF1ZXN0X2pzb24obWV0aG9kLCB1cmwsIHBheWxvYWQ9Tm9uZSk6CiAgICBib2R5ID0gTm9uZSBpZiBwYXlsb2FkIGlzIE5vbmUgZWxzZSBqc29uLmR1bXBzKHBheWxvYWQpLmVuY29kZSgidXRmLTgiKQogICAgcmVxdWVzdCA9IFJlcXVlc3QodXJsLCBkYXRhPWJvZHksIG1ldGhvZD1tZXRob2QsIGhlYWRlcnM9eyJBdXRob3JpemF0aW9uIjogIkJlYXJlciAiICsgVE9LRU4sICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiJ9KQogICAgdHJ5OgogICAgICAgIHdpdGggdXJsb3BlbihyZXF1ZXN0LCB0aW1lb3V0PTEyMCkgYXMgcmVzcG9uc2U6CiAgICAgICAgICAgIHJldHVybiBqc29uLmxvYWRzKHJlc3BvbnNlLnJlYWQoKS5kZWNvZGUoInV0Zi04IikpCiAgICBleGNlcHQgSFRUUEVycm9yIGFzIGV4YzoKICAgICAgICBkZXRhaWwgPSBleGMucmVhZCgpLmRlY29kZSgidXRmLTgiLCBlcnJvcnM9InJlcGxhY2UiKVs6NTAwXQogICAgICAgIHJhaXNlIFJ1bnRpbWVFcnJvcihmInttZXRob2R9IHt1cmx9IGZhaWxlZCAoe2V4Yy5jb2RlfSk6IHtkZXRhaWx9IikgZnJvbSBleGMKCmRlZiBwb2xsX2pvYih1cmwpOgogICAgZGVhZGxpbmUgPSB0aW1lLm1vbm90b25pYygpICsgOTAKICAgIGRlbGF5ID0gMC44CiAgICB3aGlsZSB0aW1lLm1vbm90b25pYygpIDwgZGVhZGxpbmU6CiAgICAgICAgam9iID0gcmVxdWVzdF9qc29uKCJHRVQiLCB1cmwpCiAgICAgICAgaWYgam9iLmdldCgic3RhdHVzIikgaW4geyJzdWNjZXNzIiwgImZhaWxlZCJ9OgogICAgICAgICAgICByZXR1cm4gam9iCiAgICAgICAgdGltZS5zbGVlcChkZWxheSkKICAgICAgICBkZWxheSA9IG1pbihkZWxheSAqIDEuNSwgNSkKICAgIHJhaXNlIFRpbWVvdXRFcnJvcigiVklLVE9SIGpvYiBkaWQgbm90IGZpbmlzaCIpCgpkZWYgcnVuX21ldGhvZChhcGksIHdvcmtzcGFjZV9pZCwgZW50aXR5X2lkLCBtZXRob2RfbmFtZSwgcGFyYW1zKToKICAgIHNlc3Npb24gPSByZXF1ZXN0X2pzb24oIlBPU1QiLCBmInthcGl9L3dvcmtzcGFjZXMve3dvcmtzcGFjZV9pZH0vZW50aXRpZXMve2VudGl0eV9pZH0vc2Vzc2lvbi8iLCB7fSkKICAgIGNyZWF0ZWQgPSByZXF1ZXN0X2pzb24oIlBPU1QiLCBmInthcGl9L3dvcmtzcGFjZXMve3dvcmtzcGFjZV9pZH0vZW50aXRpZXMve2VudGl0eV9pZH0vam9icy8iLCB7CiAgICAgICAgIm1ldGhvZF9uYW1lIjogbWV0aG9kX25hbWUsCiAgICAgICAgInBhcmFtcyI6IHBhcmFtcywKICAgICAgICAiZWRpdG9yX3Nlc3Npb24iOiBzZXNzaW9uWyJlZGl0b3Jfc2Vzc2lvbiJdLAogICAgICAgICJwb2xsX3Jlc3VsdCI6IEZhbHNlLAogICAgICAgICJ0aW1lb3V0IjogODY0MDAsCiAgICB9KQogICAgcmV0dXJuIHBvbGxfam9iKGNyZWF0ZWRbInVybCJdKSBpZiBjcmVhdGVkLmdldCgidXJsIikgZWxzZSBjcmVhdGVkCgpkZWYgZmxhdHRlbl9kYXRhKGl0ZW1zKToKICAgIHJlc3VsdCA9IHt9CiAgICBkZWYgdmlzaXQoaXRlbSwgZ3JvdXA9Tm9uZSk6CiAgICAgICAgY2hpbGRyZW4gPSBpdGVtLmdldCgiY2hpbGRyZW4iKSBvciBbXQogICAgICAgIG5leHRfZ3JvdXAgPSBpdGVtLmdldCgia2V5Iikgb3IgaXRlbS5nZXQoImxhYmVsIikgb3IgZ3JvdXAgaWYgY2hpbGRyZW4gZWxzZSBncm91cAogICAgICAgIGlmIG5vdCBjaGlsZHJlbiBhbmQgaXRlbS5nZXQoImtleSIpOgogICAgICAgICAgICByZXN1bHRbc3RyKGl0ZW1bImtleSJdKV0gPSB7CiAgICAgICAgICAgICAgICAidmFsdWUiOiBpdGVtLmdldCgidmFsdWUiKSwKICAgICAgICAgICAgICAgICJ1bml0IjogaXRlbS5nZXQoInN1ZmZpeCIpIG9yICIiLAogICAgICAgICAgICAgICAgImxhYmVsIjogaXRlbS5nZXQoImxhYmVsIiksCiAgICAgICAgICAgICAgICAiZ3JvdXAiOiBncm91cCwKICAgICAgICAgICAgfQogICAgICAgIGZvciBjaGlsZCBpbiBjaGlsZHJlbjoKICAgICAgICAgICAgdmlzaXQoY2hpbGQsIG5leHRfZ3JvdXApCiAgICBmb3IgaXRlbSBpbiBpdGVtczoKICAgICAgICB2aXNpdChpdGVtKQogICAgcmV0dXJuIHJlc3VsdAoKZGVmIGdldF9wYXRoKHBheWxvYWQsIHBhdGgpOgogICAgY3VycmVudCA9IHBheWxvYWQKICAgIGZvciBwYXJ0IGluIHBhdGg6CiAgICAgICAgY3VycmVudCA9IGN1cnJlbnRbcGFydF0KICAgIHJldHVybiBjdXJyZW50CgpzZWNvbmRfYXBpLCBzZWNvbmRfd3MsIHNlY29uZF9pZCA9IHBhcnNlX2VkaXRvcl91cmwoU0VDT05EX0FQUF9VUkwpCnRoaXJkX2FwaSwgdGhpcmRfd3MsIHRoaXJkX2lkID0gcGFyc2VfZWRpdG9yX3VybChUSElSRF9BUFBfVVJMKQpzZWNvbmQgPSByZXF1ZXN0X2pzb24oIkdFVCIsIGYie3NlY29uZF9hcGl9L3dvcmtzcGFjZXMve3NlY29uZF93c30vZW50aXRpZXMve3NlY29uZF9pZH0vP3t1cmxlbmNvZGUoeydwcm9wZXJ0aWVzJzondHJ1ZScsJ2NsZWFuX3BhcmFtcyc6J3RydWUnfSl9IikKdGhpcmQgPSByZXF1ZXN0X2pzb24oIkdFVCIsIGYie3RoaXJkX2FwaX0vd29ya3NwYWNlcy97dGhpcmRfd3N9L2VudGl0aWVzL3t0aGlyZF9pZH0vP3t1cmxlbmNvZGUoeydwcm9wZXJ0aWVzJzondHJ1ZScsJ2NsZWFuX3BhcmFtcyc6J3RydWUnfSl9IikKc2Vjb25kX2pvYiA9IHJ1bl9tZXRob2Qoc2Vjb25kX2FwaSwgc2Vjb25kX3dzLCBzZWNvbmRfaWQsICJ2aWV3X3R1cmJpbmVfZGF0YSIsIHNlY29uZC5nZXQoInByb3BlcnRpZXMiKSBvciB7fSkKaWYgc2Vjb25kX2pvYi5nZXQoInN0YXR1cyIpICE9ICJzdWNjZXNzIjoKICAgIHJhaXNlIFJ1bnRpbWVFcnJvcigiU2Vjb25kIGFwcCB2aWV3X3R1cmJpbmVfZGF0YSBmYWlsZWQ6ICIgKyBqc29uLmR1bXBzKHNlY29uZF9qb2IpWzo1MDBdKQpvdXRwdXRzID0gZmxhdHRlbl9kYXRhKChzZWNvbmRfam9iLmdldCgicmVzdWx0Iikgb3Ige30pLmdldCgiZGF0YSIpIG9yIFtdKQptYXBwaW5ncyA9IFsKICAgICgiYmFzZV9kaWFtZXRlciIsIFsic3RlcF9nZW8iLCAic2VjX21hc3QiLCAibWFzdF9kaWFtZXRlciJdKSwKICAgICgiYmFzZV92ZXJ0X2ZvcmNlIiwgWyJzdGVwX2dlbyIsICJzZWNfbWFzdCIsICJtYXN0X3ZlcnRpY2FsX2xvYWQiXSksCiAgICAoImJhc2VfaG9yaXpfZm9yY2UiLCBbInN0ZXBfZ2VvIiwgInNlY19tYXN0IiwgIm1hc3RfaG9yaXpvbnRhbF9sb2FkIl0pLAogICAgKCJiYXNlX21vbWVudCIsIFsic3RlcF9nZW8iLCAic2VjX21hc3QiLCAibWFzdF9tb21lbnQiXSksCl0KY2hlY2tzID0gW10KZm9yIHNvdXJjZV9rZXksIHRhcmdldF9wYXRoIGluIG1hcHBpbmdzOgogICAgc291cmNlID0gb3V0cHV0c1tzb3VyY2Vfa2V5XQogICAgdGFyZ2V0X3ZhbHVlID0gZ2V0X3BhdGgodGhpcmQuZ2V0KCJwcm9wZXJ0aWVzIikgb3Ige30sIHRhcmdldF9wYXRoKQogICAgY2hlY2tzLmFwcGVuZCh7CiAgICAgICAgImZyb20iOiBzb3VyY2Vfa2V5LAogICAgICAgICJ0byI6ICIuIi5qb2luKHRhcmdldF9wYXRoKSwKICAgICAgICAic291cmNlX3ZhbHVlIjogc291cmNlWyJ2YWx1ZSJdLAogICAgICAgICJzb3VyY2VfdW5pdCI6IHNvdXJjZVsidW5pdCJdLAogICAgICAgICJ0aGlyZF9hcHBfdmFsdWUiOiB0YXJnZXRfdmFsdWUsCiAgICAgICAgIm1hdGNoIjogc291cmNlWyJ2YWx1ZSJdID09IHRhcmdldF92YWx1ZSwKICAgIH0pCnByaW50KGpzb24uZHVtcHMoewogICAgInNlY29uZF9hcHAiOiB7CiAgICAgICAgInVybCI6IFNFQ09ORF9BUFBfVVJMLAogICAgICAgICJlbnRpdHlfaWQiOiBzZWNvbmRfaWQsCiAgICAgICAgIm5hbWUiOiBzZWNvbmQuZ2V0KCJuYW1lIiksCiAgICAgICAgInR1cmJpbmVfbW9kZWwiOiAoc2Vjb25kLmdldCgicHJvcGVydGllcyIpIG9yIHt9KS5nZXQoInR1cmJpbmVfbW9kZWwiKSwKICAgIH0sCiAgICAidGhpcmRfYXBwIjogewogICAgICAgICJ1cmwiOiBUSElSRF9BUFBfVVJMLAogICAgICAgICJlbnRpdHlfaWQiOiB0aGlyZF9pZCwKICAgICAgICAibmFtZSI6IHRoaXJkLmdldCgibmFtZSIpLAogICAgfSwKICAgICJzZWNvbmRfYXBwX291dHB1dHMiOiBvdXRwdXRzLAogICAgIm1hcHBpbmdfY2hlY2tzIjogY2hlY2tzLAogICAgImFsbF9tYXBwZWRfdmFsdWVzX21hdGNoIjogYWxsKGl0ZW1bIm1hdGNoIl0gZm9yIGl0ZW0gaW4gY2hlY2tzKSwKfSwgaW5kZW50PTIpKQo='))\"",
+        "started_at": "2026-05-18T00:56:15.400751+00:00",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\n  \"second_app\": {\n    \"url\": \"https://demo.viktor.ai/workspaces/2544/app/editor/12039\",\n    \"entity_id\": 12039,\n    \"name\": \"Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1\",\n    \"turbine_model\": \"Siemens Gamesa SG 5.0-145\"\n  },\n  \"third_app\": {\n    \"url\": \"https://demo.viktor.ai/workspaces/2515/app/editor/12040\",\n    \"entity_id\": 12040,\n    \"name\": \"Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z\"\n  },\n  \"second_app_outputs\": {\n    \"capacity\": {\n      \"value\": 5,\n      \"unit\": \"MW\",\n      \"label\": \"Rated capacity\",\n      \"group\": \"general\"\n    },\n    \"hub_height\": {\n      \"value\": 105,\n      \"unit\": \"m\",\n      \"label\": \"Hub height\",\n      \"group\": \"general\"\n    },\n    \"base_diameter\": {\n      \"value\": 4.2,\n      \"unit\": \"m\",\n      \"label\": \"Base diameter\",\n      \"group\": \"tower\"\n    },\n    \"base_moment\": {\n      \"value\": 155925,\n      \"unit\": \"kNm\",\n      \"label\": \"Max. moment at base\",\n      \"group\": \"tower\"\n    },\n    \"base_horiz_force\": {\n      \"value\": 1485,\n      \"unit\": \"kN\",\n      \"label\": \"Max. horizontal force at base\",\n      \"group\": \"tower\"\n    },\n    \"base_vert_force\": {\n      \"value\": 3973,\n      \"unit\": \"kN\",\n      \"label\": \"Max. vertical force at base\",\n      \"group\": \"tower\"\n    },\n    \"rna_weight\": {\n      \"value\": 110,\n      \"unit\": \"t\",\n      \"label\": \"Rotor-Nacelle Assembly (RNA)\",\n      \"group\": \"weight\"\n    },\n    \"tower_weight\": {\n      \"value\": 295,\n      \"unit\": \"t\",\n      \"label\": \"Tower\",\n      \"group\": \"weight\"\n    },\n    \"total_weight\": {\n      \"value\": 405,\n      \"unit\": \"t\",\n      \"label\": \"Total turbine weight\",\n      \"group\": \"weight\"\n    }\n  },\n  \"mapping_checks\": [\n    {\n      \"from\": \"base_diameter\",\n      \"to\": \"step_geo.sec_mast.mast_diameter\",\n      \"source_value\": 4.2,\n      \"source_unit\": \"m\",\n      \"third_app_value\": 4.2,\n      \"match\": true\n    },\n    {\n      \"from\": \"base_vert_force\",\n      \"to\": \"step_geo.sec_mast.mast_vertical_load\",\n      \"source_value\": 3973,\n      \"source_unit\": \"kN\",\n      \"third_app_value\": 3973,\n      \"match\": true\n    },\n    {\n      \"from\": \"base_horiz_force\",\n      \"to\": \"step_geo.sec_mast.mast_horizontal_load\",\n      \"source_value\": 1485,\n      \"source_unit\": \"kN\",\n      \"third_app_value\": 1485,\n      \"match\": true\n    },\n    {\n      \"from\": \"base_moment\",\n      \"to\": \"step_geo.sec_mast.mast_moment\",\n      \"source_value\": 155925,\n      \"source_unit\": \"kNm\",\n      \"third_app_value\": 155925,\n      \"match\": true\n    }\n  ],\n  \"all_mapped_values_match\": true\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed_shell_stdout": {
+    "second_app": {
+      "url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039",
+      "entity_id": 12039,
+      "name": "Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1",
+      "turbine_model": "Siemens Gamesa SG 5.0-145"
+    },
+    "third_app": {
+      "url": "https://demo.viktor.ai/workspaces/2515/app/editor/12040",
+      "entity_id": 12040,
+      "name": "Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z"
+    },
+    "second_app_outputs": {
+      "capacity": {
+        "value": 5,
+        "unit": "MW",
+        "label": "Rated capacity",
+        "group": "general"
+      },
+      "hub_height": {
+        "value": 105,
+        "unit": "m",
+        "label": "Hub height",
+        "group": "general"
+      },
+      "base_diameter": {
+        "value": 4.2,
+        "unit": "m",
+        "label": "Base diameter",
+        "group": "tower"
+      },
+      "base_moment": {
+        "value": 155925,
+        "unit": "kNm",
+        "label": "Max. moment at base",
+        "group": "tower"
+      },
+      "base_horiz_force": {
+        "value": 1485,
+        "unit": "kN",
+        "label": "Max. horizontal force at base",
+        "group": "tower"
+      },
+      "base_vert_force": {
+        "value": 3973,
+        "unit": "kN",
+        "label": "Max. vertical force at base",
+        "group": "tower"
+      },
+      "rna_weight": {
+        "value": 110,
+        "unit": "t",
+        "label": "Rotor-Nacelle Assembly (RNA)",
+        "group": "weight"
+      },
+      "tower_weight": {
+        "value": 295,
+        "unit": "t",
+        "label": "Tower",
+        "group": "weight"
+      },
+      "total_weight": {
+        "value": 405,
+        "unit": "t",
+        "label": "Total turbine weight",
+        "group": "weight"
+      }
+    },
+    "mapping_checks": [
+      {
+        "from": "base_diameter",
+        "to": "step_geo.sec_mast.mast_diameter",
+        "source_value": 4.2,
+        "source_unit": "m",
+        "third_app_value": 4.2,
+        "match": true
+      },
+      {
+        "from": "base_vert_force",
+        "to": "step_geo.sec_mast.mast_vertical_load",
+        "source_value": 3973,
+        "source_unit": "kN",
+        "third_app_value": 3973,
+        "match": true
+      },
+      {
+        "from": "base_horiz_force",
+        "to": "step_geo.sec_mast.mast_horizontal_load",
+        "source_value": 1485,
+        "source_unit": "kN",
+        "third_app_value": 1485,
+        "match": true
+      },
+      {
+        "from": "base_moment",
+        "to": "step_geo.sec_mast.mast_moment",
+        "source_value": 155925,
+        "source_unit": "kNm",
+        "third_app_value": 155925,
+        "match": true
+      }
+    ],
+    "all_mapped_values_match": true
+  }
+}

@@ -1,0 +1,637 @@
+{
+  "run_at": "2026-05-17T22:16:11.781857+00:00",
+  "read_only": true,
+  "apps": [
+    {
+      "editor_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12038",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2515,
+      "entity_id": 12038,
+      "entity": {
+        "id": 12038,
+        "name": "Agent sibling smoke 2026-05-17T22:08:42 - Alejandro Test",
+        "properties": {
+          "step_geo": {
+            "sec_mast": {
+              "mast_diameter": 3.0,
+              "mast_vertical_load": 4000.0,
+              "mast_horizontal_load": 1500.0,
+              "mast_moment": 150000.0
+            },
+            "sec_slab": {
+              "slab_diameter": 8.0,
+              "slab_thickness": 0.5
+            },
+            "sec_piles": {
+              "num_piles": 16,
+              "pile_length": 10.0,
+              "pile_diameter": 400,
+              "pile_edge_distance": 600
+            }
+          },
+          "step_geo_tech": {
+            "sec_tip": {
+              "tip_stiffness": 50000.0
+            },
+            "sec_lateral": {
+              "lateral_stiffness": 10000.0
+            }
+          },
+          "step_analysis": {
+            "esa_file": null
+          }
+        },
+        "summary_status": "finished",
+        "summary": {},
+        "summary_updated_at": "2026-05-17T22:08:49.693952Z",
+        "deleted": false,
+        "locked": false,
+        "locked_by": null,
+        "entity_type": 3878,
+        "entity_type_name": "Controller",
+        "updated_at": "2026-05-17T22:08:49.650339Z",
+        "parent_count": 0,
+        "actions": [
+          "read",
+          "read-basic",
+          "read-nav",
+          "update",
+          "rename",
+          "create",
+          "delete"
+        ],
+        "param_types": {
+          "step_analysis.esa_file": {
+            "type": "file"
+          },
+          "step_analysis.download_def": {
+            "type": "download-button"
+          },
+          "step_analysis.download_xml": {
+            "type": "download-button"
+          },
+          "step_geo.sec_piles.num_piles": {
+            "type": "integer"
+          },
+          "step_geo.sec_mast.mast_moment": {
+            "type": "number"
+          },
+          "step_geo.sec_piles.pile_length": {
+            "type": "number"
+          },
+          "step_geo.sec_mast.mast_diameter": {
+            "type": "number"
+          },
+          "step_geo.sec_slab.slab_diameter": {
+            "type": "number"
+          },
+          "step_geo.sec_piles.pile_diameter": {
+            "type": "number"
+          },
+          "step_geo.sec_slab.slab_thickness": {
+            "type": "number"
+          },
+          "step_geo_tech.sec_tip.tip_stiffness": {
+            "type": "number"
+          },
+          "step_geo.sec_mast.mast_vertical_load": {
+            "type": "number"
+          },
+          "step_geo.sec_piles.pile_edge_distance": {
+            "type": "number"
+          },
+          "step_geo.sec_mast.mast_horizontal_load": {
+            "type": "number"
+          },
+          "step_geo_tech.sec_lateral.lateral_stiffness": {
+            "type": "number"
+          }
+        },
+        "created_by": 374,
+        "created_at": "2026-05-17T22:08:49.645543Z",
+        "last_updated_by": 374,
+        "path": [
+          12038
+        ],
+        "show_on_dashboard": false
+      },
+      "editor_session_created": true,
+      "parametrization": {
+        "uid": 752732,
+        "kind": "result",
+        "status": "success",
+        "error_message": "",
+        "invalid_fields": {},
+        "content": {
+          "callback_exceptions": [],
+          "parametrization": [
+            {
+              "content": [
+                {
+                  "callback_exceptions": [],
+                  "content": [
+                    {
+                      "callback_exceptions": [],
+                      "default": 5,
+                      "description": "Outer diameter of the wind turbine mast at the foundation interface.",
+                      "flex": null,
+                      "name": "step_geo.sec_mast.mast_diameter",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_mast.mast_diameter",
+                      "prefix": null,
+                      "suffix": "m",
+                      "type": "number",
+                      "ui_name": "Mast diameter",
+                      "variant": "standard",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 4000,
+                      "description": "Vertical force applied at the mast ring (positive = downward).",
+                      "flex": null,
+                      "name": "step_geo.sec_mast.mast_vertical_load",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_mast.mast_vertical_load",
+                      "prefix": null,
+                      "suffix": "kN",
+                      "type": "number",
+                      "ui_name": "Vertical Force",
+                      "variant": "standard",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 1500,
+                      "description": "Horizontal force applied at the mast ring.",
+                      "flex": null,
+                      "name": "step_geo.sec_mast.mast_horizontal_load",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_mast.mast_horizontal_load",
+                      "prefix": null,
+                      "suffix": "kN",
+                      "type": "number",
+                      "ui_name": "Horizontal Force",
+                      "variant": "standard",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 150000,
+                      "description": "Overturning moment applied at the mast ring (e.g. from wind on the turbine).",
+                      "flex": null,
+                      "name": "step_geo.sec_mast.mast_moment",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_mast.mast_moment",
+                      "prefix": null,
+                      "suffix": "kN\u00b7m",
+                      "type": "number",
+                      "ui_name": "Overturning Moment",
+                      "variant": "standard",
+                      "visible": true
+                    }
+                  ],
+                  "description": null,
+                  "initially_expanded": true,
+                  "name": "step_geo.sec_mast",
+                  "parametrization_path": "step_geo.sec_mast",
+                  "title": "Mast",
+                  "type": "section",
+                  "visible": true
+                },
+                {
+                  "callback_exceptions": [],
+                  "content": [
+                    {
+                      "callback_exceptions": [],
+                      "default": 20,
+                      "description": "Outer diameter of the circular concrete slab.",
+                      "flex": null,
+                      "name": "step_geo.sec_slab.slab_diameter",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_slab.slab_diameter",
+                      "prefix": null,
+                      "suffix": "m",
+                      "type": "number",
+                      "ui_name": "Slab diameter",
+                      "variant": "standard",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 3,
+                      "description": "Thickness of the concrete slab.",
+                      "flex": null,
+                      "name": "step_geo.sec_slab.slab_thickness",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_slab.slab_thickness",
+                      "prefix": null,
+                      "suffix": "m",
+                      "type": "number",
+                      "ui_name": "Slab thickness",
+                      "variant": "standard",
+                      "visible": true
+                    }
+                  ],
+                  "description": null,
+                  "initially_expanded": true,
+                  "name": "step_geo.sec_slab",
+                  "parametrization_path": "step_geo.sec_slab",
+                  "title": "Slab",
+                  "type": "section",
+                  "visible": true
+                },
+                {
+                  "callback_exceptions": [],
+                  "content": [
+                    {
+                      "callback_exceptions": [],
+                      "default": 30,
+                      "description": "Number of piles evenly spaced on the pile circle.",
+                      "flex": null,
+                      "name": "step_geo.sec_piles.num_piles",
+                      "num_decimals": 0,
+                      "options": {
+                        "min": 6
+                      },
+                      "parametrization_path": "step_geo.sec_piles.num_piles",
+                      "prefix": null,
+                      "suffix": null,
+                      "type": "integer",
+                      "ui_name": "Number of piles",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 20,
+                      "description": "Length of each pile below the slab.",
+                      "flex": null,
+                      "name": "step_geo.sec_piles.pile_length",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_piles.pile_length",
+                      "prefix": null,
+                      "suffix": "m",
+                      "type": "number",
+                      "ui_name": "Pile length",
+                      "variant": "standard",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 500,
+                      "description": "Diameter of each circular concrete pile.",
+                      "flex": null,
+                      "name": "step_geo.sec_piles.pile_diameter",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_piles.pile_diameter",
+                      "prefix": null,
+                      "suffix": "mm",
+                      "type": "number",
+                      "ui_name": "Pile diameter",
+                      "variant": "standard",
+                      "visible": true
+                    },
+                    {
+                      "callback_exceptions": [],
+                      "default": 600,
+                      "description": "Horizontal distance from the slab edge to the centre of the piles.",
+                      "flex": null,
+                      "name": "step_geo.sec_piles.pile_edge_distance",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo.sec_piles.pile_edge_distance",
+                      "prefix": null,
+                      "suffix": "mm",
+                      "type": "number",
+                      "ui_name": "Edge distance (slab edge \u2192 pile centre)",
+                      "variant": "standard",
+                      "visible": true
+                    }
+                  ],
+                  "description": null,
+                  "initially_expanded": true,
+                  "name": "step_geo.sec_piles",
+                  "parametrization_path": "step_geo.sec_piles",
+                  "title": "Piles",
+                  "type": "section",
+                  "visible": true
+                }
+              ],
+              "description": null,
+              "enabled": true,
+              "has_on_next": false,
+              "name": "step_geo",
+              "next_label": null,
+              "parametrization_path": "step_geo",
+              "previous_label": null,
+              "title": "Define Loads & Geometry",
+              "type": "step",
+              "views": [
+                "view_geometry"
+              ],
+              "width": null
+            },
+            {
+              "content": [
+                {
+                  "callback_exceptions": [],
+                  "content": [
+                    {
+                      "callback_exceptions": [],
+                      "default": 50000,
+                      "description": "Vertical spring stiffness representing the soil resistance at the pile tip (end-bearing component). Typical range: 10 000 \u2013 200 000 kN/m depending on soil type and pile geometry.",
+                      "flex": null,
+                      "name": "step_geo_tech.sec_tip.tip_stiffness",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo_tech.sec_tip.tip_stiffness",
+                      "prefix": null,
+                      "suffix": "kN/m",
+                      "type": "number",
+                      "ui_name": "Axial spring stiffness at pile tip",
+                      "variant": "standard",
+                      "visible": true
+                    }
+                  ],
+                  "description": null,
+                  "initially_expanded": null,
+                  "name": "step_geo_tech.sec_tip",
+                  "parametrization_path": "step_geo_tech.sec_tip",
+                  "title": "Pile Tip \u2013 Axial Spring",
+                  "type": "section",
+                  "visible": true
+                },
+                {
+                  "callback_exceptions": [],
+                  "content": [
+                    {
+                      "callback_exceptions": [],
+                      "default": 10000,
+                      "description": "Distributed horizontal (lateral) spring stiffness along the pile shaft, representing the subgrade reaction of the surrounding soil. Typical range: 5 000 \u2013 50 000 kN/m/m for medium-dense sand/clay.",
+                      "flex": null,
+                      "name": "step_geo_tech.sec_lateral.lateral_stiffness",
+                      "num_decimals": null,
+                      "options": {},
+                      "parametrization_path": "step_geo_tech.sec_lateral.lateral_stiffness",
+                      "prefix": null,
+                      "suffix": "kN/m/m",
+                      "type": "number",
+                      "ui_name": "Horizontal spring stiffness (per unit length)",
+                      "variant": "standard",
+                      "visible": true
+                    }
+                  ],
+                  "description": null,
+                  "initially_expanded": null,
+                  "name": "step_geo_tech.sec_lateral",
+                  "parametrization_path": "step_geo_tech.sec_lateral",
+                  "title": "Pile Shaft \u2013 Horizontal Spring",
+                  "type": "section",
+                  "visible": true
+                }
+              ],
+              "description": null,
+              "enabled": true,
+              "has_on_next": false,
+              "name": "step_geo_tech",
+              "next_label": null,
+              "parametrization_path": "step_geo_tech",
+              "previous_label": null,
+              "title": "Geotechnical Parameters",
+              "type": "step",
+              "views": [],
+              "width": null
+            },
+            {
+              "content": [
+                {
+                  "allowed_file_extensions": [
+                    ".esa"
+                  ],
+                  "callback_exceptions": [],
+                  "description": "Upload the SCIA .esa template file. Must contain materials 'C30/37' and 'concrete_slab', and an I/O document named 'output' with Reactions for Combinations.",
+                  "flex": null,
+                  "max_size_bytes": null,
+                  "name": "step_analysis.esa_file",
+                  "parametrization_path": "step_analysis.esa_file",
+                  "type": "file",
+                  "ui_name": "SCIA template (.esa)",
+                  "visible": true
+                },
+                {
+                  "alwaysAvailable": false,
+                  "callback_exceptions": [],
+                  "description": null,
+                  "flex": null,
+                  "longpoll": false,
+                  "method": "download_scia_input_xml",
+                  "name": "step_analysis.download_xml",
+                  "parametrization_path": "step_analysis.download_xml",
+                  "type": "download-button",
+                  "ui_name": "Download SCIA input XML",
+                  "visible": true
+                },
+                {
+                  "alwaysAvailable": false,
+                  "callback_exceptions": [],
+                  "description": null,
+                  "flex": null,
+                  "longpoll": false,
+                  "method": "download_scia_input_def",
+                  "name": "step_analysis.download_def",
+                  "parametrization_path": "step_analysis.download_def",
+                  "type": "download-button",
+                  "ui_name": "Download SCIA .def file",
+                  "visible": true
+                }
+              ],
+              "description": null,
+              "enabled": true,
+              "has_on_next": false,
+              "name": "step_analysis",
+              "next_label": null,
+              "parametrization_path": "step_analysis",
+              "previous_label": null,
+              "title": "Run SCIA Analysis",
+              "type": "step",
+              "views": [
+                "view_results",
+                "view_pile_reactions",
+                "view_2d_internal_forces",
+                "view_mxd_plus_plot"
+              ],
+              "width": null
+            }
+          ],
+          "views": [
+            {
+              "controller_method": "view_geometry"
+            },
+            {
+              "controller_method": "view_results"
+            },
+            {
+              "controller_method": "view_pile_reactions"
+            },
+            {
+              "controller_method": "view_2d_internal_forces"
+            },
+            {
+              "controller_method": "view_mxd_plus_plot"
+            }
+          ]
+        },
+        "completed_at": "2026-05-17T22:16:09.182Z",
+        "log_download_url": null
+      },
+      "parametrization_error": null
+    },
+    {
+      "editor_url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2544,
+      "entity_id": 12039,
+      "entity": {
+        "id": 12039,
+        "name": "Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1",
+        "properties": {
+          "turbine_model": "Siemens Gamesa SG 5.0-145"
+        },
+        "summary_status": "finished",
+        "summary": {},
+        "summary_updated_at": "2026-05-17T22:09:05.182656Z",
+        "deleted": false,
+        "locked": false,
+        "locked_by": null,
+        "entity_type": 3906,
+        "entity_type_name": "Controller",
+        "updated_at": "2026-05-17T22:09:05.130720Z",
+        "parent_count": 0,
+        "actions": [
+          "read",
+          "read-basic",
+          "read-nav",
+          "update",
+          "rename",
+          "create",
+          "delete"
+        ],
+        "param_types": {
+          "turbine_model": {
+            "type": "select"
+          }
+        },
+        "created_by": 374,
+        "created_at": "2026-05-17T22:09:05.126031Z",
+        "last_updated_by": 374,
+        "path": [
+          12039
+        ],
+        "show_on_dashboard": false
+      },
+      "editor_session_created": true,
+      "parametrization": {
+        "uid": 752733,
+        "kind": "result",
+        "status": "success",
+        "error_message": "",
+        "invalid_fields": {},
+        "content": {
+          "callback_exceptions": [],
+          "parametrization": [
+            {
+              "autoselect_single_option": false,
+              "callback_exceptions": [],
+              "default": "Vestas V150-4.5 MW",
+              "description": "Select one of the 10 most common state-of-the-art onshore wind turbines.",
+              "flex": 100,
+              "multiple": false,
+              "name": "turbine_model",
+              "options": [
+                {
+                  "label": "Vestas V150-4.5 MW",
+                  "value": "Vestas V150-4.5 MW",
+                  "visible": true
+                },
+                {
+                  "label": "Vestas V162-6.2 MW",
+                  "value": "Vestas V162-6.2 MW",
+                  "visible": true
+                },
+                {
+                  "label": "Siemens Gamesa SG 5.0-145",
+                  "value": "Siemens Gamesa SG 5.0-145",
+                  "visible": true
+                },
+                {
+                  "label": "Siemens Gamesa SG 6.6-170",
+                  "value": "Siemens Gamesa SG 6.6-170",
+                  "visible": true
+                },
+                {
+                  "label": "GE Vernova 4.5-158",
+                  "value": "GE Vernova 4.5-158",
+                  "visible": true
+                },
+                {
+                  "label": "Nordex N163/5.X",
+                  "value": "Nordex N163/5.X",
+                  "visible": true
+                },
+                {
+                  "label": "Enercon E-160 EP5",
+                  "value": "Enercon E-160 EP5",
+                  "visible": true
+                },
+                {
+                  "label": "Goldwind GW175-6.0",
+                  "value": "Goldwind GW175-6.0",
+                  "visible": true
+                },
+                {
+                  "label": "Envision EN-156/4.5",
+                  "value": "Envision EN-156/4.5",
+                  "visible": true
+                },
+                {
+                  "label": "Ming Yang MySE 5.5-155",
+                  "value": "Ming Yang MySE 5.5-155",
+                  "visible": true
+                }
+              ],
+              "parametrization_path": "turbine_model",
+              "prefix": null,
+              "suffix": null,
+              "type": "select",
+              "ui_name": "Turbine model",
+              "variant": "standard",
+              "visible": true
+            }
+          ],
+          "views": [
+            {
+              "controller_method": "view_turbine_data"
+            },
+            {
+              "controller_method": "view_schematic"
+            },
+            {
+              "controller_method": "view_comparison"
+            }
+          ]
+        },
+        "completed_at": "2026-05-17T22:16:11.626Z",
+        "log_download_url": null
+      },
+      "parametrization_error": null
+    }
+  ]
+}

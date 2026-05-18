@@ -1,0 +1,20 @@
+{
+  "run_at": "2026-05-17T22:08:42.459352+00:00",
+  "source": "created by the previous live smoke run before simplifying the test script",
+  "created_siblings": [
+    {
+      "workspace_id": 2515,
+      "source_entity_id": 11988,
+      "source_name": "Alejandro Test",
+      "created_entity_id": 12038,
+      "created_editor_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12038"
+    },
+    {
+      "workspace_id": 2544,
+      "source_entity_id": 12021,
+      "source_name": "Turbine 1",
+      "created_entity_id": 12039,
+      "created_editor_url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039"
+    }
+  ]
+}

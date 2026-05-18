@@ -1,0 +1,85 @@
+{
+  "run_at": "2026-05-17T23:09:13.110202+00:00",
+  "model": "gpt-5.4",
+  "app_a_url": "https://demo.viktor.ai/workspaces/2544/app/editor/12039",
+  "app_b_source_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12038",
+  "result": {
+    "final_output": "{\n  \"created_entity_id\": 12040,\n  \"created_entity_name\": \"Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z\",\n  \"created_editor_url\": \"https://demo.viktor.ai/workspaces/2515/app/editor/12040\",\n  \"applied_mappings\": [\n    {\n      \"from\": \"base_diameter\",\n      \"to\": \"step_geo.sec_mast.mast_diameter\",\n      \"value\": 4.2,\n      \"unit\": \"m\"\n    },\n    {\n      \"from\": \"base_vert_force\",\n      \"to\": \"step_geo.sec_mast.mast_vertical_load\",\n      \"value\": 3973,\n      \"unit\": \"kN\"\n    },\n    {\n      \"from\": \"base_horiz_force\",\n      \"to\": \"step_geo.sec_mast.mast_horizontal_load\",\n      \"value\": 1485,\n      \"unit\": \"kN\"\n    },\n    {\n      \"from\": \"base_moment\",\n      \"to\": \"step_geo.sec_mast.mast_moment\",\n      \"value\": 155925,\n      \"unit\": \"kNm\"\n    }\n  ],\n  \"created_properties\": {\n    \"step_geo\": {\n      \"sec_mast\": {\n        \"mast_diameter\": 4.2,\n        \"mast_vertical_load\": 3973,\n        \"mast_horizontal_load\": 1485,\n        \"mast_moment\": 155925\n      },\n      \"sec_slab\": {\n        \"slab_diameter\": 20,\n        \"slab_thickness\": 3\n      },\n      \"sec_piles\": {\n        \"num_piles\": 30,\n        \"pile_length\": 20,\n        \"pile_diameter\": 500,\n        \"pile_edge_distance\": 600\n      }\n    },\n    \"step_geo_tech\": {\n      \"sec_tip\": {\n        \"tip_stiffness\": 50000\n      },\n      \"sec_lateral\": {\n        \"lateral_stiffness\": 10000\n      }\n    },\n    \"step_analysis\": {\n      \"esa_file\": null\n    }\n  }\n}",
+    "working_directory": "/var/folders/44/k6_fk1px2wq56yfzkvtchqy00000gn/T/viktor-local-shell/20260517T230757582601",
+    "allowed_domains": [
+      "demo.viktor.ai"
+    ],
+    "commands": [
+      {
+        "command": "python -c \"import base64; exec(base64.b64decode('CmltcG9ydCBqc29uLCBvcywgcmUsIHRpbWUKZnJvbSBkYXRldGltZSBpbXBvcnQgZGF0ZXRpbWUsIHRpbWV6b25lCmZyb20gdXJsbGliLmVycm9yIGltcG9ydCBIVFRQRXJyb3IKZnJvbSB1cmxsaWIucGFyc2UgaW1wb3J0IHVybGVuY29kZQpmcm9tIHVybGxpYi5yZXF1ZXN0IGltcG9ydCBSZXF1ZXN0LCB1cmxvcGVuCgpBUFBfQV9VUkwgPSAnaHR0cHM6Ly9kZW1vLnZpa3Rvci5haS93b3Jrc3BhY2VzLzI1NDQvYXBwL2VkaXRvci8xMjAzOScKQVBQX0JfU09VUkNFX1VSTCA9ICdodHRwczovL2RlbW8udmlrdG9yLmFpL3dvcmtzcGFjZXMvMjUxNS9hcHAvZWRpdG9yLzEyMDM4JwpVUERBVEVfRU5USVRZX0lEID0gMTIwNDAKVE9LRU4gPSBvcy5lbnZpcm9uWyJUT0tFTl9WS19BUFAiXQpFRElUT1JfVVJMX1BBVFRFUk4gPSByZS5jb21waWxlKHIiXmh0dHBzPzovLyg/UDxob3N0PlteL10rKS93b3Jrc3BhY2VzLyg/UDx3b3Jrc3BhY2VfaWQ+XGQrKS9hcHAvZWRpdG9yLyg/UDxlbnRpdHlfaWQ+XGQrKSg/OlsvPyNdLiopPyQiKQpDT05UQUlORVJfVFlQRVMgPSB7InBhZ2UiLCAic3RlcCIsICJ0YWIiLCAic2VjdGlvbiIsICJsaW5lYnJlYWsiLCAidGV4dCIsICJzZXRwYXJhbXNidXR0b24ifQpBQ1RJT05fVFlQRVMgPSB7ImJ1dHRvbiIsICJkb3dubG9hZGJ1dHRvbiIsICJkb3dubG9hZC1idXR0b24iLCAic2V0cGFyYW1zYnV0dG9uIn0KCmRlZiBwYXJzZV9lZGl0b3JfdXJsKGVkaXRvcl91cmwpOgogICAgbWF0Y2ggPSBFRElUT1JfVVJMX1BBVFRFUk4ubWF0Y2goZWRpdG9yX3VybCkKICAgIGlmIG5vdCBtYXRjaDoKICAgICAgICByYWlzZSBWYWx1ZUVycm9yKCJVbnN1cHBvcnRlZCBlZGl0b3IgVVJMOiAiICsgZWRpdG9yX3VybCkKICAgIHJldHVybiBmImh0dHBzOi8ve21hdGNoLmdyb3VwKCdob3N0Jyl9L2FwaSIsIGludChtYXRjaC5ncm91cCgid29ya3NwYWNlX2lkIikpLCBpbnQobWF0Y2guZ3JvdXAoImVudGl0eV9pZCIpKQoKZGVmIHJlcXVlc3RfanNvbihtZXRob2QsIHVybCwgcGF5bG9hZD1Ob25lKToKICAgIGJvZHkgPSBOb25lIGlmIHBheWxvYWQgaXMgTm9uZSBlbHNlIGpzb24uZHVtcHMocGF5bG9hZCkuZW5jb2RlKCJ1dGYtOCIpCiAgICByZXEgPSBSZXF1ZXN0KHVybCwgZGF0YT1ib2R5LCBtZXRob2Q9bWV0aG9kLCBoZWFkZXJzPXsiQXV0aG9yaXphdGlvbiI6ICJCZWFyZXIgIiArIFRPS0VOLCAiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL2pzb24ifSkKICAgIHRyeToKICAgICAgICB3aXRoIHVybG9wZW4ocmVxLCB0aW1lb3V0PTEyMCkgYXMgcmVzcG9uc2U6CiAgICAgICAgICAgIHJldHVybiBqc29uLmxvYWRzKHJlc3BvbnNlLnJlYWQoKS5kZWNvZGUoInV0Zi04IikpCiAgICBleGNlcHQgSFRUUEVycm9yIGFzIGV4YzoKICAgICAgICBkZXRhaWwgPSBleGMucmVhZCgpLmRlY29kZSgidXRmLTgiLCBlcnJvcnM9InJlcGxhY2UiKVs6NTAwXQogICAgICAgIHJhaXNlIFJ1bnRpbWVFcnJvcihmInttZXRob2R9IHt1cmx9IGZhaWxlZCAoe2V4Yy5jb2RlfSk6IHtkZXRhaWx9IikgZnJvbSBleGMKCmRlZiBlZGl0b3JfdXJsKGFwaV9iYXNlLCB3b3Jrc3BhY2VfaWQsIGVudGl0eV9pZCk6CiAgICByZXR1cm4gZiJ7YXBpX2Jhc2UucnN0cmlwKCcvJykucmVtb3Zlc3VmZml4KCcvYXBpJyl9L3dvcmtzcGFjZXMve3dvcmtzcGFjZV9pZH0vYXBwL2VkaXRvci97ZW50aXR5X2lkfSIKCmRlZiBub2RlX3BhdGhfZnJvbV9uYW1lKG5hbWUsIHBhcmVudF9wYXRoKToKICAgIGlmIG5vdCBuYW1lOgogICAgICAgIHJldHVybiBwYXJlbnRfcGF0aAogICAgbmFtZSA9IHN0cihuYW1lKQogICAgcmV0dXJuIFtwYXJ0IGZvciBwYXJ0IGluIG5hbWUuc3BsaXQoIi4iKSBpZiBwYXJ0XSBpZiAiLiIgaW4gbmFtZSBlbHNlIHBhcmVudF9wYXRoICsgW25hbWVdCgpkZWYgc2V0X2J5X3BhdGgocGF5bG9hZCwgcGF0aCwgdmFsdWUpOgogICAgY3VycmVudCA9IHBheWxvYWQKICAgIGZvciBwYXJ0IGluIHBhdGhbOi0xXToKICAgICAgICBjdXJyZW50ID0gY3VycmVudC5zZXRkZWZhdWx0KHBhcnQsIHt9KQogICAgY3VycmVudFtwYXRoWy0xXV0gPSB2YWx1ZQoKZGVmIGRlZXBfbWVyZ2UoYmFzZSwgZXh0cmEpOgogICAgZm9yIGtleSwgdmFsdWUgaW4gZXh0cmEuaXRlbXMoKToKICAgICAgICBpZiBpc2luc3RhbmNlKHZhbHVlLCBkaWN0KSBhbmQgaXNpbnN0YW5jZShiYXNlLmdldChrZXkpLCBkaWN0KToKICAgICAgICAgICAgZGVlcF9tZXJnZShiYXNlW2tleV0sIHZhbHVlKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGJhc2Vba2V5XSA9IHZhbHVlCiAgICByZXR1cm4gYmFzZQoKZGVmIGNvbGxlY3RfZGVmYXVsdHMobm9kZXMsIHBhcmVudF9wYXRoPU5vbmUpOgogICAgcGFyZW50X3BhdGggPSBwYXJlbnRfcGF0aCBvciBbXQogICAgcGF5bG9hZCA9IHt9CiAgICBmb3Igbm9kZSBpbiBub2RlczoKICAgICAgICByYXdfdHlwZSA9IHN0cihub2RlLmdldCgidHlwZSIpIG9yICIiKQogICAgICAgIG5vcm1hbGl6ZWQgPSByYXdfdHlwZS5sb3dlcigpCiAgICAgICAgbmFtZSA9IG5vZGUuZ2V0KCJuYW1lIikKICAgICAgICBub2RlX3BhdGggPSBub2RlX3BhdGhfZnJvbV9uYW1lKG5hbWUsIHBhcmVudF9wYXRoKQogICAgICAgIGNvbnRlbnQgPSBub2RlLmdldCgiY29udGVudCIpIG9yIFtdCiAgICAgICAgaWYgY29udGVudDoKICAgICAgICAgICAgZGVlcF9tZXJnZShwYXlsb2FkLCBjb2xsZWN0X2RlZmF1bHRzKGNvbnRlbnQsIG5vZGVfcGF0aCkpCiAgICAgICAgaWYgbm90IG5hbWUgb3IgY29udGVudCBvciBub3JtYWxpemVkIGluIENPTlRBSU5FUl9UWVBFUyBvciBub3JtYWxpemVkIGluIEFDVElPTl9UWVBFUzoKICAgICAgICAgICAgY29udGludWUKICAgICAgICBzZXRfYnlfcGF0aChwYXlsb2FkLCBub2RlX3BhdGgsIG5vZGUuZ2V0KCJkZWZhdWx0IikpCiAgICByZXR1cm4gcGF5bG9hZAoKZGVmIGZsYXR0ZW5fZGF0YV9pdGVtcyhpdGVtcyk6CiAgICByZXN1bHQgPSB7fQogICAgZGVmIHZpc2l0KGl0ZW0sIGdyb3VwPU5vbmUpOgogICAgICAgIGNoaWxkcmVuID0gaXRlbS5nZXQoImNoaWxkcmVuIikgb3IgW10KICAgICAgICBuZXh0X2dyb3VwID0gaXRlbS5nZXQoImtleSIpIG9yIGl0ZW0uZ2V0KCJsYWJlbCIpIG9yIGdyb3VwIGlmIGNoaWxkcmVuIGVsc2UgZ3JvdXAKICAgICAgICBpZiBub3QgY2hpbGRyZW4gYW5kIGl0ZW0uZ2V0KCJrZXkiKToKICAgICAgICAgICAgcmVzdWx0W3N0cihpdGVtWyJrZXkiXSldID0gewogICAgICAgICAgICAgICAgImdyb3VwIjogZ3JvdXAsCiAgICAgICAgICAgICAgICAibGFiZWwiOiBpdGVtLmdldCgibGFiZWwiKSwKICAgICAgICAgICAgICAgICJ2YWx1ZSI6IGl0ZW0uZ2V0KCJ2YWx1ZSIpLAogICAgICAgICAgICAgICAgInVuaXQiOiBpdGVtLmdldCgic3VmZml4Iikgb3IgIiIsCiAgICAgICAgICAgICAgICAiZGlzcGxheV92YWx1ZSI6IGl0ZW0uZ2V0KCJkaXNwbGF5X3ZhbHVlIiksCiAgICAgICAgICAgIH0KICAgICAgICBmb3IgY2hpbGQgaW4gY2hpbGRyZW46CiAgICAgICAgICAgIHZpc2l0KGNoaWxkLCBuZXh0X2dyb3VwKQogICAgZm9yIGl0ZW0gaW4gaXRlbXM6CiAgICAgICAgdmlzaXQoaXRlbSkKICAgIHJldHVybiByZXN1bHQKCmRlZiBwb2xsX2pvYihqb2JfdXJsKToKICAgIGRlYWRsaW5lID0gdGltZS5tb25vdG9uaWMoKSArIDkwCiAgICBkZWxheSA9IDAuOAogICAgd2hpbGUgdGltZS5tb25vdG9uaWMoKSA8IGRlYWRsaW5lOgogICAgICAgIGpvYiA9IHJlcXVlc3RfanNvbigiR0VUIiwgam9iX3VybCkKICAgICAgICBpZiBqb2IuZ2V0KCJzdGF0dXMiKSBpbiB7InN1Y2Nlc3MiLCAiZmFpbGVkIn06CiAgICAgICAgICAgIHJldHVybiBqb2IKICAgICAgICB0aW1lLnNsZWVwKGRlbGF5KQogICAgICAgIGRlbGF5ID0gbWluKGRlbGF5ICogMS41LCA1KQogICAgcmFpc2UgVGltZW91dEVycm9yKCJWSUtUT1Igam9iIGRpZCBub3QgZmluaXNoIikKCmRlZiBydW5fbWV0aG9kKGFwaV9iYXNlLCB3b3Jrc3BhY2VfaWQsIGVudGl0eV9pZCwgbWV0aG9kX25hbWUsIHBhcmFtcywgZWRpdG9yX3Nlc3Npb24pOgogICAgY3JlYXRlZCA9IHJlcXVlc3RfanNvbigiUE9TVCIsIGYie2FwaV9iYXNlfS93b3Jrc3BhY2VzL3t3b3Jrc3BhY2VfaWR9L2VudGl0aWVzL3tlbnRpdHlfaWR9L2pvYnMvIiwgewogICAgICAgICJtZXRob2RfbmFtZSI6IG1ldGhvZF9uYW1lLAogICAgICAgICJwYXJhbXMiOiBwYXJhbXMsCiAgICAgICAgImVkaXRvcl9zZXNzaW9uIjogZWRpdG9yX3Nlc3Npb24sCiAgICAgICAgInBvbGxfcmVzdWx0IjogRmFsc2UsCiAgICAgICAgInRpbWVvdXQiOiA4NjQwMCwKICAgIH0pCiAgICByZXR1cm4gcG9sbF9qb2IoY3JlYXRlZFsidXJsIl0pIGlmIGNyZWF0ZWQuZ2V0KCJ1cmwiKSBlbHNlIGNyZWF0ZWQKCmRlZiBnZXRfcGFyZW50X2lkKGFwaV9iYXNlLCB3b3Jrc3BhY2VfaWQsIGVudGl0eV9pZCk6CiAgICB0cnk6CiAgICAgICAgcGFyZW50ID0gcmVxdWVzdF9qc29uKCJHRVQiLCBmInthcGlfYmFzZX0vd29ya3NwYWNlcy97d29ya3NwYWNlX2lkfS9lbnRpdGllcy97ZW50aXR5X2lkfS9wYXJlbnQvIikKICAgICAgICByZXR1cm4gaW50KHBhcmVudFsiaWQiXSkKICAgIGV4Y2VwdCBFeGNlcHRpb246CiAgICAgICAgcmV0dXJuIE5vbmUKCmFwcF9hX2FwaSwgYXBwX2Ffd3MsIGFwcF9hX2lkID0gcGFyc2VfZWRpdG9yX3VybChBUFBfQV9VUkwpCmFwcF9iX2FwaSwgYXBwX2Jfd3MsIGFwcF9iX2lkID0gcGFyc2VfZWRpdG9yX3VybChBUFBfQl9TT1VSQ0VfVVJMKQphcHBfYSA9IHJlcXVlc3RfanNvbigiR0VUIiwgZiJ7YXBwX2FfYXBpfS93b3Jrc3BhY2VzL3thcHBfYV93c30vZW50aXRpZXMve2FwcF9hX2lkfS8/e3VybGVuY29kZSh7J3Byb3BlcnRpZXMnOid0cnVlJywnY2xlYW5fcGFyYW1zJzondHJ1ZSd9KX0iKQphcHBfYV9zZXNzaW9uID0gcmVxdWVzdF9qc29uKCJQT1NUIiwgZiJ7YXBwX2FfYXBpfS93b3Jrc3BhY2VzL3thcHBfYV93c30vZW50aXRpZXMve2FwcF9hX2lkfS9zZXNzaW9uLyIsIHt9KQpqb2IgPSBydW5fbWV0aG9kKGFwcF9hX2FwaSwgYXBwX2Ffd3MsIGFwcF9hX2lkLCAidmlld190dXJiaW5lX2RhdGEiLCBhcHBfYS5nZXQoInByb3BlcnRpZXMiKSBvciB7fSwgYXBwX2Ffc2Vzc2lvblsiZWRpdG9yX3Nlc3Npb24iXSkKaWYgam9iLmdldCgic3RhdHVzIikgIT0gInN1Y2Nlc3MiOgogICAgcmFpc2UgUnVudGltZUVycm9yKCJBcHAgQSB2aWV3X3R1cmJpbmVfZGF0YSBmYWlsZWQ6ICIgKyBqc29uLmR1bXBzKGpvYilbOjUwMF0pCm91dHB1dHMgPSBmbGF0dGVuX2RhdGFfaXRlbXMoKGpvYi5nZXQoInJlc3VsdCIpIG9yIHt9KS5nZXQoImRhdGEiKSBvciBbXSkKYXBwX2IgPSByZXF1ZXN0X2pzb24oIkdFVCIsIGYie2FwcF9iX2FwaX0vd29ya3NwYWNlcy97YXBwX2Jfd3N9L2VudGl0aWVzL3thcHBfYl9pZH0vP3t1cmxlbmNvZGUoeydwcm9wZXJ0aWVzJzondHJ1ZScsJ2NsZWFuX3BhcmFtcyc6J3RydWUnLCdwYXJhbV90eXBlcyc6J3RydWUnfSl9IikKYXBwX2Jfc2Vzc2lvbiA9IHJlcXVlc3RfanNvbigiUE9TVCIsIGYie2FwcF9iX2FwaX0vd29ya3NwYWNlcy97YXBwX2Jfd3N9L2VudGl0aWVzL3thcHBfYl9pZH0vc2Vzc2lvbi8iLCB7fSkKcGFyYW1ldHJpemF0aW9uID0gcmVxdWVzdF9qc29uKCJQT1NUIiwgZiJ7YXBwX2JfYXBpfS93b3Jrc3BhY2VzL3thcHBfYl93c30vZW50aXRpZXMve2FwcF9iX2lkfS9wYXJhbWV0cml6YXRpb24vIiwgewogICAgImVkaXRvcl9zZXNzaW9uIjogYXBwX2Jfc2Vzc2lvblsiZWRpdG9yX3Nlc3Npb24iXSwKICAgICJwYXJhbXMiOiB7fSwKfSkKcGF5bG9hZCA9IGNvbGxlY3RfZGVmYXVsdHMoKHBhcmFtZXRyaXphdGlvbi5nZXQoImNvbnRlbnQiKSBvciB7fSkuZ2V0KCJwYXJhbWV0cml6YXRpb24iKSBvciBbXSkKbWFwcGluZ3MgPSB7CiAgICAiYmFzZV9kaWFtZXRlciI6IFsic3RlcF9nZW8iLCAic2VjX21hc3QiLCAibWFzdF9kaWFtZXRlciJdLAogICAgImJhc2VfdmVydF9mb3JjZSI6IFsic3RlcF9nZW8iLCAic2VjX21hc3QiLCAibWFzdF92ZXJ0aWNhbF9sb2FkIl0sCiAgICAiYmFzZV9ob3Jpel9mb3JjZSI6IFsic3RlcF9nZW8iLCAic2VjX21hc3QiLCAibWFzdF9ob3Jpem9udGFsX2xvYWQiXSwKICAgICJiYXNlX21vbWVudCI6IFsic3RlcF9nZW8iLCAic2VjX21hc3QiLCAibWFzdF9tb21lbnQiXSwKfQphcHBsaWVkID0gW10KZm9yIHNvdXJjZV9rZXksIHRhcmdldF9wYXRoIGluIG1hcHBpbmdzLml0ZW1zKCk6CiAgICB2YWx1ZSA9IG91dHB1dHNbc291cmNlX2tleV1bInZhbHVlIl0KICAgIHNldF9ieV9wYXRoKHBheWxvYWQsIHRhcmdldF9wYXRoLCB2YWx1ZSkKICAgIGFwcGxpZWQuYXBwZW5kKHsiZnJvbSI6IHNvdXJjZV9rZXksICJ0byI6ICIuIi5qb2luKHRhcmdldF9wYXRoKSwgInZhbHVlIjogdmFsdWUsICJ1bml0Ijogb3V0cHV0c1tzb3VyY2Vfa2V5XVsidW5pdCJdfSkKCmlmIFVQREFURV9FTlRJVFlfSUQgaXMgbm90IE5vbmU6CiAgICBleGlzdGluZyA9IHJlcXVlc3RfanNvbigiR0VUIiwgZiJ7YXBwX2JfYXBpfS93b3Jrc3BhY2VzL3thcHBfYl93c30vZW50aXRpZXMve1VQREFURV9FTlRJVFlfSUR9Lz97dXJsZW5jb2RlKHsncHJvcGVydGllcyc6J3RydWUnLCdjbGVhbl9wYXJhbXMnOid0cnVlJ30pfSIpCiAgICBjcmVhdGVkID0gcmVxdWVzdF9qc29uKCJQVVQiLCBmInthcHBfYl9hcGl9L3dvcmtzcGFjZXMve2FwcF9iX3dzfS9lbnRpdGllcy97VVBEQVRFX0VOVElUWV9JRH0vIiwgewogICAgICAgICJuYW1lIjogZXhpc3RpbmdbIm5hbWUiXSwKICAgICAgICAicHJvcGVydGllcyI6IHBheWxvYWQsCiAgICAgICAgIm1lc3NhZ2UiOiAiVXBkYXRlIEFwcCBCIGZyb20gQXBwIEEgdGhyb3VnaCBsb2NhbCBzaGVsbCBleGVjdXRvciIsCiAgICB9KQplbHNlOgogICAgcGFyZW50X2lkID0gZ2V0X3BhcmVudF9pZChhcHBfYl9hcGksIGFwcF9iX3dzLCBhcHBfYl9pZCkKICAgIGNyZWF0ZV91cmwgPSBmInthcHBfYl9hcGl9L3dvcmtzcGFjZXMve2FwcF9iX3dzfS9lbnRpdGllcy97cGFyZW50X2lkfS9lbnRpdGllcy8iIGlmIHBhcmVudF9pZCBpcyBub3QgTm9uZSBlbHNlIGYie2FwcF9iX2FwaX0vd29ya3NwYWNlcy97YXBwX2Jfd3N9L2VudGl0aWVzLyIKICAgIGNyZWF0ZWQgPSByZXF1ZXN0X2pzb24oIlBPU1QiLCBjcmVhdGVfdXJsLCB7CiAgICAgICAgImVudGl0eV90eXBlIjogYXBwX2JbImVudGl0eV90eXBlIl0sCiAgICAgICAgIm5hbWUiOiAiTG9jYWwgc2hlbGwgYnJpZGdlIGZyb20gIiArIGFwcF9hWyJuYW1lIl0gKyAiICIgKyBkYXRldGltZS5ub3codGltZXpvbmUudXRjKS5zdHJmdGltZSgiJVktJW0tJWRUJUg6JU06JVNaIiksCiAgICAgICAgInByb3BlcnRpZXMiOiBwYXlsb2FkLAogICAgfSkKICAgIGlmIGlzaW5zdGFuY2UoY3JlYXRlZCwgbGlzdCk6CiAgICAgICAgY3JlYXRlZCA9IGNyZWF0ZWRbMF0KCmNyZWF0ZWRfaWQgPSBpbnQoY3JlYXRlZFsiaWQiXSkKcHJpbnQoanNvbi5kdW1wcyh7CiAgICAiY3JlYXRlZF9lbnRpdHlfaWQiOiBjcmVhdGVkX2lkLAogICAgImNyZWF0ZWRfZW50aXR5X25hbWUiOiBjcmVhdGVkLmdldCgibmFtZSIpLAogICAgImNyZWF0ZWRfZWRpdG9yX3VybCI6IGVkaXRvcl91cmwoYXBwX2JfYXBpLCBhcHBfYl93cywgY3JlYXRlZF9pZCksCiAgICAiYXBwbGllZF9tYXBwaW5ncyI6IGFwcGxpZWQsCiAgICAiY3JlYXRlZF9wcm9wZXJ0aWVzIjogcGF5bG9hZCwKfSwgaW5kZW50PTIpKQo='))\"",
+        "started_at": "2026-05-17T23:09:00.834882+00:00",
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "{\n  \"created_entity_id\": 12040,\n  \"created_entity_name\": \"Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z\",\n  \"created_editor_url\": \"https://demo.viktor.ai/workspaces/2515/app/editor/12040\",\n  \"applied_mappings\": [\n    {\n      \"from\": \"base_diameter\",\n      \"to\": \"step_geo.sec_mast.mast_diameter\",\n      \"value\": 4.2,\n      \"unit\": \"m\"\n    },\n    {\n      \"from\": \"base_vert_force\",\n      \"to\": \"step_geo.sec_mast.mast_vertical_load\",\n      \"value\": 3973,\n      \"unit\": \"kN\"\n    },\n    {\n      \"from\": \"base_horiz_force\",\n      \"to\": \"step_geo.sec_mast.mast_horizontal_load\",\n      \"value\": 1485,\n      \"unit\": \"kN\"\n    },\n    {\n      \"from\": \"base_moment\",\n      \"to\": \"step_geo.sec_mast.mast_moment\",\n      \"value\": 155925,\n      \"unit\": \"kNm\"\n    }\n  ],\n  \"created_properties\": {\n    \"step_geo\": {\n      \"sec_mast\": {\n        \"mast_diameter\": 4.2,\n        \"mast_vertical_load\": 3973,\n        \"mast_horizontal_load\": 1485,\n        \"mast_moment\": 155925\n      },\n      \"sec_slab\": {\n        \"slab_diameter\": 20,\n        \"slab_thickness\": 3\n      },\n      \"sec_piles\": {\n        \"num_piles\": 30,\n        \"pile_length\": 20,\n        \"pile_diameter\": 500,\n        \"pile_edge_distance\": 600\n      }\n    },\n    \"step_geo_tech\": {\n      \"sec_tip\": {\n        \"tip_stiffness\": 50000\n      },\n      \"sec_lateral\": {\n        \"lateral_stiffness\": 10000\n      }\n    },\n    \"step_analysis\": {\n      \"esa_file\": null\n    }\n  }\n}\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "parsed_shell_stdout": {
+    "created_entity_id": 12040,
+    "created_entity_name": "Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z",
+    "created_editor_url": "https://demo.viktor.ai/workspaces/2515/app/editor/12040",
+    "applied_mappings": [
+      {
+        "from": "base_diameter",
+        "to": "step_geo.sec_mast.mast_diameter",
+        "value": 4.2,
+        "unit": "m"
+      },
+      {
+        "from": "base_vert_force",
+        "to": "step_geo.sec_mast.mast_vertical_load",
+        "value": 3973,
+        "unit": "kN"
+      },
+      {
+        "from": "base_horiz_force",
+        "to": "step_geo.sec_mast.mast_horizontal_load",
+        "value": 1485,
+        "unit": "kN"
+      },
+      {
+        "from": "base_moment",
+        "to": "step_geo.sec_mast.mast_moment",
+        "value": 155925,
+        "unit": "kNm"
+      }
+    ],
+    "created_properties": {
+      "step_geo": {
+        "sec_mast": {
+          "mast_diameter": 4.2,
+          "mast_vertical_load": 3973,
+          "mast_horizontal_load": 1485,
+          "mast_moment": 155925
+        },
+        "sec_slab": {
+          "slab_diameter": 20,
+          "slab_thickness": 3
+        },
+        "sec_piles": {
+          "num_piles": 30,
+          "pile_length": 20,
+          "pile_diameter": 500,
+          "pile_edge_distance": 600
+        }
+      },
+      "step_geo_tech": {
+        "sec_tip": {
+          "tip_stiffness": 50000
+        },
+        "sec_lateral": {
+          "lateral_stiffness": 10000
+        }
+      },
+      "step_analysis": {
+        "esa_file": null
+      }
+    }
+  }
+}

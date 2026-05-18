@@ -3,13 +3,12 @@ from __future__ import annotations
 import json
 import os
 from typing import Any, Literal
-from urllib.parse import urlparse
 
 import viktor as vkt
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
-from .client import ViktorApiClient, app_url_from_target, get_token, parse_app_url, resolve_target
+from .client import ViktorApiClient, app_url_from_target, parse_app_url, resolve_target
 from .code_editor import save_code_files, set_code_editor_visibility
 from .discovery import capture_app, compact_capture, detect_result_kind
 
@@ -67,10 +66,25 @@ class InspectViktorAppArgs(ViktorAppTargetInput):
 
 async def inspect_viktor_app_func(_ctx: Any, args: str) -> str:
     payload = InspectViktorAppArgs.model_validate_json(args)
-    target = resolve_target(**_target_kwargs(payload))
-    client = ViktorApiClient(api_base=target.api_base)
-    capture = capture_app(client=client, target=target, params=payload.params)
-    result = compact_capture(capture, include_raw=payload.include_raw)
+    try:
+        target = resolve_target(**_target_kwargs(payload))
+        client = ViktorApiClient(api_base=target.api_base)
+        capture = capture_app(client=client, target=target, params=payload.params)
+        result = compact_capture(capture, include_raw=payload.include_raw)
+    except Exception as exc:
+        response = {
+            "status": "error",
+            "tool": "inspect_viktor_app",
+            "input": payload.model_dump(mode="json"),
+            "error_type": type(exc).__name__,
+            "error": str(exc),
+            "guidance": (
+                "Do not stop the workflow. Resolve the URL/entity if possible, "
+                "or mark this app/edge as blocked or unknown."
+            ),
+        }
+        _storage_set_json("latest_viktor_app_capture_error", response)
+        return json.dumps(response, indent=2)
 
     if payload.probe_output_methods:
         candidate_params = capture.default_plus_saved_payload.params or capture.entity.properties
@@ -145,16 +159,32 @@ class RunViktorAppMethodArgs(ViktorAppTargetInput):
 
 async def run_viktor_app_method_func(_ctx: Any, args: str) -> str:
     payload = RunViktorAppMethodArgs.model_validate_json(args)
-    target = resolve_target(**_target_kwargs(payload))
-    client = ViktorApiClient(api_base=target.api_base)
-    job = client.create_job(
-        target,
-        method_name=payload.method_name,
-        params=payload.params,
-        method_type=payload.method_type,
-        editor_session=payload.editor_session,
-        timeout=payload.timeout,
-    )
+    try:
+        target = resolve_target(**_target_kwargs(payload))
+        client = ViktorApiClient(api_base=target.api_base)
+        job = client.create_job(
+            target,
+            method_name=payload.method_name,
+            params=payload.params,
+            method_type=payload.method_type,
+            editor_session=payload.editor_session,
+            timeout=payload.timeout,
+        )
+    except Exception as exc:
+        response = {
+            "status": "error",
+            "tool": "run_viktor_app_method",
+            "input": payload.model_dump(mode="json"),
+            "error_type": type(exc).__name__,
+            "error": str(exc),
+            "guidance": (
+                "Do not stop the workflow. Mark this method, output, or edge as "
+                "blocked if the failure is caused by a missing file, worker, "
+                "integration, credential, or other non-agent-facing requirement."
+            ),
+        }
+        _storage_set_json("latest_viktor_job_result_error", response)
+        return json.dumps(response, indent=2)
     result_kind, result_keys, result_summary = detect_result_kind(job.result)
     response: dict[str, Any] = {
         "app_url": app_url_from_target(target),
@@ -328,7 +358,7 @@ TARGET_WORKSPACE_ID = {target_target.workspace_id}
 TARGET_ENTITY_ID = {target_target.entity_id}
 TARGET_METHOD_NAME = {target_method_name!r}
 
-SOURCE_PARAMS = {json.dumps(source_params, indent=2)}
+SOURCE_BASE_PARAMS = {json.dumps(source_params, indent=2)}
 TARGET_BASE_PARAMS = {json.dumps(target_params, indent=2)}
 
 
@@ -353,6 +383,17 @@ class ViktorRestClient:
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         response.raise_for_status()
         return response.json()
+
+    def get_entity_properties(self, *, workspace_id: int, entity_id: int) -> dict[str, Any]:
+        response = requests.get(
+            f"{{self.api_base}}/workspaces/{{workspace_id}}/entities/{{entity_id}}/",
+            headers=self.headers,
+            params={{"properties": "true", "clean_params": "true"}},
+            timeout=self.timeout,
+        )
+        response.raise_for_status()
+        payload = response.json()
+        return payload.get("properties") or {{}}
 
     def run_method(
         self,
@@ -383,6 +424,16 @@ class ViktorRestClient:
         raise TimeoutError(f"Job did not finish within {{max_poll_seconds}} seconds.")
 
 
+def deep_merge(base: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
+    result = deepcopy(base)
+    for key, value in (overlay or {{}}).items():
+        if isinstance(value, dict) and isinstance(result.get(key), dict):
+            result[key] = deep_merge(result[key], value)
+        else:
+            result[key] = deepcopy(value)
+    return result
+
+
 def extract_result_payload(job: dict[str, Any]) -> Any:
     result = job.get("result") or job.get("content") or {{}}
     if "data" in result:
@@ -397,12 +448,34 @@ def extract_result_payload(job: dict[str, Any]) -> Any:
 def build_target_params(source_output: Any, target_base_params: dict[str, Any]) -> dict[str, Any]:
     params = deepcopy(target_base_params)
 
+    # Propagation rule:
+    # - Recompute this payload every run from the latest source params/output.
+    # - Start from the latest downstream saved values merged over generated defaults.
+    # - Preserve downstream-only fields from that live downstream base.
+    # - Apply only mappings that have been validated for this pair of apps.
+    # - Record blocked or unresolved mappings instead of inventing values.
+    blocked_edges: list[dict[str, Any]] = []
+
     # TODO: Replace this generic mapping with the validated mapping between apps.
     # Source methods discovered:
     # {", ".join(method.method_name for method in source_capture.methods)}
     # Target fields are visible in TARGET_BASE_PARAMS and the target parametrization capture.
     # Example:
     # params["target_section"]["target_field"] = source_output["source_key"]
+    if params.get("step_analysis", {{}}).get("esa_file") in (None, "", {{}}):
+        blocked_edges.append({{
+            "path": "step_analysis.esa_file",
+            "reason": "Missing downstream file/integration input; preserve value and skip dependent SCIA result execution.",
+        }})
+
+    params["_workflow_meta"] = {{
+        "propagated_from": {{
+            "workspace_id": SOURCE_WORKSPACE_ID,
+            "entity_id": SOURCE_ENTITY_ID,
+            "method_name": SOURCE_METHOD_NAME,
+        }},
+        "blocked_edges": blocked_edges,
+    }}
     return params
 
 
@@ -410,14 +483,39 @@ def main() -> None:
     source_client = ViktorRestClient(SOURCE_API_BASE, TOKEN)
     target_client = ViktorRestClient(TARGET_API_BASE, TOKEN)
 
+    source_params = deep_merge(
+        SOURCE_BASE_PARAMS,
+        source_client.get_entity_properties(
+            workspace_id=SOURCE_WORKSPACE_ID,
+            entity_id=SOURCE_ENTITY_ID,
+        ),
+    )
+    target_base_params = deep_merge(
+        TARGET_BASE_PARAMS,
+        target_client.get_entity_properties(
+            workspace_id=TARGET_WORKSPACE_ID,
+            entity_id=TARGET_ENTITY_ID,
+        ),
+    )
+
     source_job = source_client.run_method(
         workspace_id=SOURCE_WORKSPACE_ID,
         entity_id=SOURCE_ENTITY_ID,
         method_name=SOURCE_METHOD_NAME,
-        params=SOURCE_PARAMS,
+        params=source_params,
     )
     source_output = extract_result_payload(source_job)
-    target_params = build_target_params(source_output, TARGET_BASE_PARAMS)
+    target_params = build_target_params(source_output, target_base_params)
+
+    blocked_edges = target_params.pop("_workflow_meta", {{}}).get("blocked_edges", [])
+    if blocked_edges:
+        print(json.dumps({{
+            "source_status": source_job.get("status"),
+            "target_status": "blocked",
+            "blocked_edges": blocked_edges,
+            "target_params_preview": target_params,
+        }}, indent=2))
+        return
 
     target_job = target_client.run_method(
         workspace_id=TARGET_WORKSPACE_ID,
@@ -525,7 +623,7 @@ def generate_viktor_bridge_code_tool() -> Any:
 
 class SaveWorkflowCodeArgs(BaseModel):
     files: dict[str, str] = Field(
-        ...,
+        default_factory=dict,
         description="Files to show in the Monaco workflow code viewer.",
     )
     show: bool = Field(default=True, description="Show the code editor after saving.")
@@ -542,7 +640,11 @@ def save_workflow_code_tool() -> Any:
 
     return FunctionTool(
         name="save_workflow_code",
-        description="Save generated code or notes into the Monaco workflow code WebView.",
+        description=(
+            "Save generated code or notes into the Monaco workflow code WebView. "
+            "Pass files as an object mapping filename to complete file contents, "
+            "for example {'workflow.py': '...'} or {'notes.md': '...'}."
+        ),
         params_json_schema=SaveWorkflowCodeArgs.model_json_schema(),
         on_invoke_tool=save_workflow_code_func,
         strict_json_schema=False,
@@ -567,107 +669,7 @@ def show_hide_code_editor_tool() -> Any:
         description="Show or hide the Monaco workflow code WebView.",
         params_json_schema=ShowHideCodeEditorArgs.model_json_schema(),
         on_invoke_tool=show_hide_code_editor_func,
-    )
-
-
-class RunOpenAIShellViktorTaskArgs(BaseModel):
-    prompt: str = Field(
-        ...,
-        description="Task for the hosted OpenAI shell tool. Ask it to inspect VIKTOR APIs, test payloads, or draft code.",
-    )
-    app_urls: list[str] = Field(
-        default_factory=list,
-        description="VIKTOR app URLs whose hosts should be allowlisted for shell network access.",
-    )
-    allowed_domains: list[str] = Field(
-        default_factory=list,
-        description="Additional allowed domains for the shell environment.",
-    )
-    model: str | None = Field(
-        default=None,
-        description="OpenAI model for the shell task. Defaults to OPENAI_SHELL_MODEL or gpt-5.5.",
-    )
-    save_output_file: str | None = Field(
-        default=None,
-        description="Optional filename to save the shell task final text in the code viewer.",
-    )
-
-
-def _domains_for_shell(app_urls: list[str], extra_domains: list[str]) -> list[str]:
-    domains: set[str] = set()
-    for app_url in app_urls:
-        parsed = urlparse(app_url)
-        if parsed.netloc:
-            domains.add(parsed.netloc)
-    for domain in extra_domains:
-        cleaned = domain.replace("https://", "").replace("http://", "").split("/")[0].strip()
-        if cleaned:
-            domains.add(cleaned)
-    api_base = os.getenv("VIKTOR_API_BASE")
-    if api_base:
-        parsed = urlparse(api_base)
-        if parsed.netloc:
-            domains.add(parsed.netloc)
-    return sorted(domains or {"demo.viktor.ai"})
-
-
-async def run_openai_shell_viktor_task_func(_ctx: Any, args: str) -> str:
-    payload = RunOpenAIShellViktorTaskArgs.model_validate_json(args)
-    from openai import OpenAI
-
-    viktor_token = get_token()
-    domains = _domains_for_shell(payload.app_urls, payload.allowed_domains)
-    client = OpenAI()
-    model = payload.model or os.getenv("OPENAI_SHELL_MODEL") or "gpt-5.5"
-    shell_prompt = (
-        "You are running in a hosted shell environment. Use curl or Python requests "
-        "to inspect the VIKTOR API and draft code. The VIKTOR token is available as "
-        "$TOKEN_VK_APP for the allowed VIKTOR domains only. Never print or echo the token. "
-        "Return concise findings and any final Python code.\n\n"
-        f"Task:\n{payload.prompt}"
-    )
-    response = client.responses.create(
-        model=model,
-        input=shell_prompt,
-        tool_choice="required",
-        tools=[
-            {
-                "type": "shell",
-                "environment": {
-                    "type": "container_auto",
-                    "network_policy": {
-                        "type": "allowlist",
-                        "allowed_domains": domains,
-                        "domain_secrets": [
-                            {
-                                "domain": domain,
-                                "name": "TOKEN_VK_APP",
-                                "value": viktor_token,
-                            }
-                            for domain in domains
-                        ],
-                    },
-                },
-            }
-        ],
-    )
-    output_text = getattr(response, "output_text", None) or str(response)
-    if payload.save_output_file:
-        save_code_files({payload.save_output_file: output_text}, show=True)
-    return output_text
-
-
-def run_openai_shell_viktor_task_tool() -> Any:
-    from agents import FunctionTool
-
-    return FunctionTool(
-        name="run_openai_shell_viktor_task",
-        description=(
-            "Delegate flexible VIKTOR API exploration to the OpenAI hosted shell tool. "
-            "The shell gets a domain-scoped TOKEN_VK_APP secret and can use curl/Python."
-        ),
-        params_json_schema=RunOpenAIShellViktorTaskArgs.model_json_schema(),
-        on_invoke_tool=run_openai_shell_viktor_task_func,
+        strict_json_schema=False,
     )
 
 
@@ -679,5 +681,4 @@ def get_viktor_api_tools() -> list[Any]:
         generate_viktor_bridge_code_tool(),
         save_workflow_code_tool(),
         show_hide_code_editor_tool(),
-        run_openai_shell_viktor_task_tool(),
     ]
