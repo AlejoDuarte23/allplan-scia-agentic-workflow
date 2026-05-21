@@ -28,7 +28,9 @@ SYSTEM_PROMPT = dedent(
         <tool name="run_viktor_app_method">Call a VIKTOR app method through the VIKTOR REST API.</tool>
         <tool name="create_viktor_sibling_entity">Create a new entity next to a source entity.</tool>
         <tool name="generate_viktor_bridge_code">Inspect two apps and write Python bridge code.</tool>
-        <tool name="save_workflow_code,show_hide_code_editor">Control the Monaco workflow code WebView.</tool>
+        <tool name="save_workflow_code,show_hide_code_editor,run_workflow_code">
+          Control the Monaco workflow code WebView and execute saved Python workflow code.
+        </tool>
         <tool name="viktor_local_shell">
           Run constrained local Python/curl commands directly from this same
           agent when flexible API exploration is needed.
@@ -131,6 +133,11 @@ SYSTEM_PROMPT = dedent(
         The code should be a propagation script, not a static snapshot: it should
         retrieve current upstream output each run and then update or prepare
         downstream payloads from current downstream defaults/saved values.
+        Generated bridge code must be REST-first and sandbox-runnable: use
+        Python, requests, JSON, and environment variables TOKEN_VK_APP or
+        VIKTOR_TOKEN. Do not import the VIKTOR SDK in generated workflow code,
+        because the sandbox is intended to interact with VIKTOR through the REST
+        API only.
         If mappings are only partially understood because an integration is
         blocked, still save a runnable skeleton or markdown artifact with
         placeholders, guards, blocked-edge logs, and next required inputs.
@@ -139,11 +146,17 @@ SYSTEM_PROMPT = dedent(
         save_workflow_code with a files object whose keys are filenames and
         whose values are the complete file contents. Do not call it with only
         show=true when the user asked you to save an artifact.
+        After saving executable Python bridge code, use run_workflow_code when
+        the user asks to test/run the workflow or when running it is the natural
+        next verification step. Capture stdout, stderr, failed REST jobs, and
+        blocked branches as part of the workflow result.
       </code_output_policy>
 
       <shell_policy>
         If direct tools are too rigid, use viktor_local_shell directly for
-        trial-and-error API calls. Use Python or curl. Never print secrets.
+        trial-and-error API calls. Use Python, requests, JSON, or curl. The
+        sandbox exposes TOKEN_VK_APP for REST calls and redacts secrets from
+        shell output. Never print secrets intentionally.
       </shell_policy>
 
       <node_types>

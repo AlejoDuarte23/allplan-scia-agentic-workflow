@@ -440,7 +440,9 @@ def build_default_payload_candidate(
         if not path_exists_in_payload(default_params, split_param_path(field_path))
     ]
     if backfill_missing:
-        params = merge_missing_with_fallback(default_params, saved_params)
+        # Defaults initialize the payload shape, but saved entity values are the
+        # current state and must win when both exist.
+        params = deep_merge(default_params, saved_params)
         name = "defaults_plus_saved"
     else:
         params = default_params

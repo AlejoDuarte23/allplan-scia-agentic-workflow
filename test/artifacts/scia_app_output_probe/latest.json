@@ -70,7 +70,7 @@
             "labels"
           ],
           "sample": {
-            "geometry": "https://viktor-storage-eu1.s3.amazonaws.com/tmp/913a78a8-483a-4e3b-956f-56f2acedb18f/viktor.gltf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWJWJ6TMJGMQGN5X%2F20260518%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260518T011329Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6b2e59c9ffe3eaf811bd542303b8ff4d5d2c798ebbda8baeedf863c25c2040b5",
+            "geometry": "[signed VIKTOR storage URL omitted]",
             "geometry_type": "gltf",
             "labels": [
               {

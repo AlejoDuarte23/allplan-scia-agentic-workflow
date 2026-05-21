@@ -1,0 +1,670 @@
+{
+  "run_at": "2026-05-20T14:21:41.691612+00:00",
+  "target": {
+    "api_base": "https://demo.viktor.ai/api",
+    "workspace_id": 2651,
+    "entity_id": 12137,
+    "editor_url": "https://demo.viktor.ai/workspaces/2651/app/editor/12137"
+  },
+  "entity": {
+    "id": 12137,
+    "name": "Foundation 1",
+    "entity_type": 4003,
+    "entity_type_name": "Controller",
+    "locked": true,
+    "locked_by": {
+      "id": 374,
+      "name": "Alejandro Duarte Vendries",
+      "first_name": "Alejandro",
+      "last_name": "Duarte Vendries",
+      "email": "aduartevendries@viktor.ai"
+    },
+    "actions": [
+      "read",
+      "read-basic",
+      "read-nav",
+      "update",
+      "rename",
+      "create",
+      "delete"
+    ],
+    "properties": {
+      "step_geo": {
+        "sec_mast": {
+          "mast_diameter": 5.0,
+          "mast_vertical_load": 4000.0,
+          "mast_horizontal_load": 1500.0,
+          "mast_moment": 150000.0
+        },
+        "sec_plate": {
+          "slab_diameter": 20.0,
+          "slab_thickness": 3.0,
+          "plate_edge_thickness": 1.0,
+          "pedestal_height": 1.0
+        },
+        "sec_piles": {
+          "num_piles": 30,
+          "pile_length": 20.0,
+          "pile_diameter": 500,
+          "pile_edge_distance": 600
+        }
+      },
+      "step_geo_tech": {
+        "sec_tip": {
+          "tip_stiffness": 50000.0
+        },
+        "sec_lateral": {
+          "lateral_stiffness": 10000.0
+        }
+      }
+    },
+    "param_types": {
+      "step_analysis.download_def": {
+        "type": "download-button"
+      },
+      "step_analysis.download_xml": {
+        "type": "download-button"
+      },
+      "step_geo.sec_piles.num_piles": {
+        "type": "integer"
+      },
+      "step_geo.sec_mast.mast_moment": {
+        "type": "number"
+      },
+      "step_geo.sec_piles.pile_length": {
+        "type": "number"
+      },
+      "step_geo.sec_mast.mast_diameter": {
+        "type": "number"
+      },
+      "step_geo.sec_piles.pile_diameter": {
+        "type": "number"
+      },
+      "step_geo.sec_plate.slab_diameter": {
+        "type": "number"
+      },
+      "step_geo.sec_plate.slab_thickness": {
+        "type": "number"
+      },
+      "step_geo.sec_plate.pedestal_height": {
+        "type": "number"
+      },
+      "step_geo_tech.sec_tip.tip_stiffness": {
+        "type": "number"
+      },
+      "step_geo.sec_mast.mast_vertical_load": {
+        "type": "number"
+      },
+      "step_geo.sec_piles.pile_edge_distance": {
+        "type": "number"
+      },
+      "step_geo.sec_mast.mast_horizontal_load": {
+        "type": "number"
+      },
+      "step_geo.sec_plate.plate_edge_thickness": {
+        "type": "number"
+      },
+      "step_geo_tech.sec_lateral.lateral_stiffness": {
+        "type": "number"
+      }
+    }
+  },
+  "entity_type": {
+    "id": 4003,
+    "name": "Controller",
+    "class_name": "Controller",
+    "preprocess_method": "",
+    "is_file": false,
+    "has_designer": true,
+    "show_children_as": "None",
+    "views": [
+      {
+        "label": "3D Geometry",
+        "view_type": "geometry",
+        "description": null,
+        "update_label": null,
+        "view_settings": {
+          "up_axis": [
+            0,
+            0,
+            1
+          ],
+          "view_mode": "3D",
+          "default_shadow": false,
+          "x_axis_to_right": true
+        },
+        "duration_guess": 1,
+        "controller_method": "view_geometry",
+        "automatic_update": true
+      },
+      {
+        "label": "Results Summary",
+        "view_type": "data",
+        "description": null,
+        "update_label": null,
+        "view_settings": {},
+        "duration_guess": 60,
+        "controller_method": "view_results",
+        "automatic_update": false
+      },
+      {
+        "label": "Pile Reactions",
+        "view_type": "table",
+        "description": null,
+        "update_label": null,
+        "view_settings": {},
+        "duration_guess": 60,
+        "controller_method": "view_pile_reactions",
+        "automatic_update": false
+      },
+      {
+        "label": "2D Internal Forces",
+        "view_type": "table",
+        "description": null,
+        "update_label": null,
+        "view_settings": {},
+        "duration_guess": 60,
+        "controller_method": "view_2d_internal_forces",
+        "automatic_update": false
+      },
+      {
+        "label": "2D Moment Contour Plots",
+        "view_type": "plotly",
+        "description": null,
+        "update_label": null,
+        "view_settings": {},
+        "duration_guess": 60,
+        "controller_method": "view_mxd_plus_plot",
+        "automatic_update": false
+      }
+    ],
+    "summary": [],
+    "scope": "everyone",
+    "actions": [
+      "read",
+      "read-basic",
+      "read-nav",
+      "update",
+      "rename",
+      "create",
+      "delete"
+    ],
+    "child_entity_type_ids": [],
+    "file_constraints": {
+      "max_size": 50000000,
+      "file_types": null
+    },
+    "viktor_store_table_option_field_value": true,
+    "viktor_enforce_field_constraints": true,
+    "parametrization_width": null,
+    "views_only": false,
+    "show_file_manager": false,
+    "navigate_to_editor": false,
+    "section_expansion_setting": "local-per-section",
+    "allow_saving": true
+  },
+  "parametrization_status": {
+    "status": "success",
+    "error_message": "",
+    "invalid_fields": {}
+  },
+  "fields": [
+    {
+      "path": "step_geo.sec_mast.mast_diameter",
+      "type": "number",
+      "label": "Mast diameter",
+      "default": 5,
+      "description": "Outer diameter of the wind turbine mast at the foundation interface.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_mast.mast_vertical_load",
+      "type": "number",
+      "label": "Vertical Force",
+      "default": 4000,
+      "description": "Vertical force applied at the mast ring (positive = downward).",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_mast.mast_horizontal_load",
+      "type": "number",
+      "label": "Horizontal Force",
+      "default": 1500,
+      "description": "Horizontal force applied at the mast ring.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_mast.mast_moment",
+      "type": "number",
+      "label": "Overturning Moment",
+      "default": 150000,
+      "description": "Overturning moment applied at the mast ring (e.g. from wind on the turbine).",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_plate.slab_diameter",
+      "type": "number",
+      "label": "Plate diameter",
+      "default": 20,
+      "description": "Outer diameter of the circular concrete plate.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_plate.slab_thickness",
+      "type": "number",
+      "label": "Plate thickness at centre",
+      "default": 3,
+      "description": "Thickness of the concrete plate at the centre (below the mast).",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_plate.plate_edge_thickness",
+      "type": "number",
+      "label": "Plate thickness at edge",
+      "default": 1,
+      "description": "Thickness of the concrete plate at the outer edge. The top surface tapers linearly from centre to edge; the bottom remains flat.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_plate.pedestal_height",
+      "type": "number",
+      "label": "Pedestal height",
+      "default": 1,
+      "description": "Height of the concrete pedestal sitting on top of the plate, below the mast flange. Same diameter as the mast.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_piles.num_piles",
+      "type": "integer",
+      "label": "Number of piles",
+      "default": 30,
+      "description": "Number of piles evenly spaced on the pile circle.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_piles.pile_length",
+      "type": "number",
+      "label": "Pile length",
+      "default": 20,
+      "description": "Length of each pile below the plate.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_piles.pile_diameter",
+      "type": "number",
+      "label": "Pile diameter",
+      "default": 500,
+      "description": "Diameter of each circular concrete pile.",
+      "method": null
+    },
+    {
+      "path": "step_geo.sec_piles.pile_edge_distance",
+      "type": "number",
+      "label": "Edge distance (plate edge → pile centre)",
+      "default": 600,
+      "description": "Horizontal distance from the plate edge to the centre of the piles.",
+      "method": null
+    },
+    {
+      "path": "step_geo_tech.sec_tip.tip_stiffness",
+      "type": "number",
+      "label": "Axial spring stiffness at pile tip",
+      "default": 50000,
+      "description": "Vertical spring stiffness representing the soil resistance at the pile tip (end-bearing component). Typical range: 10 000 – 200 000 kN/m depending on soil type and pile geometry.",
+      "method": null
+    },
+    {
+      "path": "step_geo_tech.sec_lateral.lateral_stiffness",
+      "type": "number",
+      "label": "Horizontal spring stiffness (per unit length)",
+      "default": 10000,
+      "description": "Distributed horizontal (lateral) spring stiffness along the pile shaft, representing the subgrade reaction of the surrounding soil. Typical range: 5 000 – 50 000 kN/m/m for medium-dense sand/clay.",
+      "method": null
+    },
+    {
+      "path": "step_analysis.download_xml",
+      "type": "download-button",
+      "label": "Download SCIA input XML",
+      "default": null,
+      "description": null,
+      "method": "download_scia_input_xml"
+    },
+    {
+      "path": "step_analysis.download_def",
+      "type": "download-button",
+      "label": "Download SCIA .def file",
+      "default": null,
+      "description": null,
+      "method": "download_scia_input_def"
+    }
+  ],
+  "view_methods": [
+    {
+      "method": "view_geometry",
+      "label": "3D Geometry",
+      "view_type": "geometry",
+      "automatic_update": true
+    },
+    {
+      "method": "view_results",
+      "label": "Results Summary",
+      "view_type": "data",
+      "automatic_update": false
+    },
+    {
+      "method": "view_pile_reactions",
+      "label": "Pile Reactions",
+      "view_type": "table",
+      "automatic_update": false
+    },
+    {
+      "method": "view_2d_internal_forces",
+      "label": "2D Internal Forces",
+      "view_type": "table",
+      "automatic_update": false
+    },
+    {
+      "method": "view_mxd_plus_plot",
+      "label": "2D Moment Contour Plots",
+      "view_type": "plotly",
+      "automatic_update": false
+    }
+  ],
+  "buttons": [
+    {
+      "method": "download_scia_input_xml",
+      "type": "download-button",
+      "path": "step_analysis.download_xml",
+      "label": "Download SCIA input XML"
+    },
+    {
+      "method": "download_scia_input_def",
+      "type": "download-button",
+      "path": "step_analysis.download_def",
+      "label": "Download SCIA .def file"
+    }
+  ],
+  "views_from_parametrization_nodes": [
+    {
+      "source_path": "step_geo",
+      "view": "view_geometry"
+    },
+    {
+      "source_path": "step_analysis",
+      "view": "view_results"
+    },
+    {
+      "source_path": "step_analysis",
+      "view": "view_pile_reactions"
+    },
+    {
+      "source_path": "step_analysis",
+      "view": "view_2d_internal_forces"
+    },
+    {
+      "source_path": "step_analysis",
+      "view": "view_mxd_plus_plot"
+    }
+  ],
+  "probe_results": {
+    "view_geometry": {
+      "method_meta": {
+        "method": "view_geometry",
+        "label": "3D Geometry",
+        "view_type": "geometry",
+        "automatic_update": true
+      },
+      "create_response": {
+        "uid": 756249
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "success",
+          "uid": 756249,
+          "kind": "result"
+        }
+      ],
+      "status": "success",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:28.170Z",
+      "error": {
+        "type": "",
+        "message": "",
+        "invalid_fields": null,
+        "stack_trace": null
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": "geometry",
+        "keys": [
+          "geometry"
+        ],
+        "geometry_type": "dict",
+        "geometry_keys": [
+          "geometry",
+          "geometry_type",
+          "labels"
+        ]
+      }
+    },
+    "view_results": {
+      "method_meta": {
+        "method": "view_results",
+        "label": "Results Summary",
+        "view_type": "data",
+        "automatic_update": false
+      },
+      "create_response": {
+        "uid": 756250
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "failed",
+          "uid": 756250,
+          "kind": "result"
+        }
+      ],
+      "status": "failed",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:30.749000Z",
+      "error": {
+        "type": "error_code",
+        "message": "",
+        "invalid_fields": {}
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": null,
+        "keys": []
+      }
+    },
+    "view_pile_reactions": {
+      "method_meta": {
+        "method": "view_pile_reactions",
+        "label": "Pile Reactions",
+        "view_type": "table",
+        "automatic_update": false
+      },
+      "create_response": {
+        "uid": 756251
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "failed",
+          "uid": 756251,
+          "kind": "result"
+        }
+      ],
+      "status": "failed",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:32.117000Z",
+      "error": {
+        "type": "error_code",
+        "message": "",
+        "invalid_fields": {}
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": null,
+        "keys": []
+      }
+    },
+    "view_2d_internal_forces": {
+      "method_meta": {
+        "method": "view_2d_internal_forces",
+        "label": "2D Internal Forces",
+        "view_type": "table",
+        "automatic_update": false
+      },
+      "create_response": {
+        "uid": 756252
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "failed",
+          "uid": 756252,
+          "kind": "result"
+        }
+      ],
+      "status": "failed",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:33.590000Z",
+      "error": {
+        "type": "error_code",
+        "message": "",
+        "invalid_fields": {}
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": null,
+        "keys": []
+      }
+    },
+    "view_mxd_plus_plot": {
+      "method_meta": {
+        "method": "view_mxd_plus_plot",
+        "label": "2D Moment Contour Plots",
+        "view_type": "plotly",
+        "automatic_update": false
+      },
+      "create_response": {
+        "uid": 756253
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "failed",
+          "uid": 756253,
+          "kind": "result"
+        }
+      ],
+      "status": "failed",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:35.432000Z",
+      "error": {
+        "type": "error_code",
+        "message": "",
+        "invalid_fields": {}
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": null,
+        "keys": []
+      }
+    },
+    "download_scia_input_xml": {
+      "method_meta": {
+        "method": "download_scia_input_xml",
+        "type": "download-button",
+        "path": "step_analysis.download_xml",
+        "label": "Download SCIA input XML"
+      },
+      "create_response": {
+        "uid": 756254
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "running",
+          "uid": 756254,
+          "kind": "result"
+        },
+        {
+          "status": "success",
+          "uid": 756254,
+          "kind": "result"
+        }
+      ],
+      "status": "success",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:38.564Z",
+      "error": {
+        "type": "",
+        "message": "",
+        "invalid_fields": null,
+        "stack_trace": null
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": "download",
+        "keys": [
+          "download"
+        ],
+        "download": {
+          "url_present": true,
+          "url_redacted": "[signed URL omitted]"
+        }
+      }
+    },
+    "download_scia_input_def": {
+      "method_meta": {
+        "method": "download_scia_input_def",
+        "type": "download-button",
+        "path": "step_analysis.download_def",
+        "label": "Download SCIA .def file"
+      },
+      "create_response": {
+        "uid": 756255
+      },
+      "job_url_present": true,
+      "poll_attempts": [
+        {
+          "status": "success",
+          "uid": 756255,
+          "kind": "result"
+        }
+      ],
+      "status": "success",
+      "kind": "result",
+      "completed_at": "2026-05-20T14:21:41.577Z",
+      "error": {
+        "type": "",
+        "message": "",
+        "invalid_fields": null,
+        "stack_trace": null
+      },
+      "message": {},
+      "log_download_url_present": false,
+      "result_summary": {
+        "kind": "download",
+        "keys": [
+          "download"
+        ],
+        "download": {
+          "url_present": true,
+          "url_redacted": "[signed URL omitted]"
+        }
+      }
+    }
+  }
+}

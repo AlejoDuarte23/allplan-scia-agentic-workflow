@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import base64
 import json
 import os
+import shlex
 from typing import Any, Literal
 
 import viktor as vkt
@@ -9,8 +11,9 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
 from .client import ViktorApiClient, app_url_from_target, parse_app_url, resolve_target
-from .code_editor import save_code_files, set_code_editor_visibility
+from .code_editor import load_code_files, save_code_files, set_code_editor_visibility
 from .discovery import capture_app, compact_capture, detect_result_kind
+from .local_shell import run_local_viktor_shell_commands
 
 load_dotenv()
 
@@ -673,6 +676,86 @@ def show_hide_code_editor_tool() -> Any:
     )
 
 
+class RunWorkflowCodeArgs(BaseModel):
+    file_name: str | None = Field(
+        default=None,
+        description="Saved Monaco Python file to execute. Defaults to the first .py file.",
+    )
+    timeout_ms: int = Field(
+        default=120_000,
+        ge=1_000,
+        le=120_000,
+        description="Maximum execution time for the sandboxed shell command.",
+    )
+    app_urls: list[str] = Field(
+        default_factory=list,
+        description="Optional VIKTOR URLs used to allow additional REST domains in the sandbox.",
+    )
+
+
+def _select_python_workflow_file(files: dict[str, str], requested: str | None) -> tuple[str, str]:
+    if requested:
+        if requested not in files:
+            raise ValueError(f"Saved code file not found: {requested}")
+        if not requested.endswith(".py"):
+            raise ValueError(f"Saved code file is not a Python file: {requested}")
+        return requested, files[requested]
+
+    for file_name, code in sorted(files.items()):
+        if file_name.endswith(".py"):
+            return file_name, code
+
+    raise ValueError("No saved Python workflow file was found in the Monaco code storage.")
+
+
+async def run_workflow_code_func(_ctx: Any, args: str) -> str:
+    payload = RunWorkflowCodeArgs.model_validate_json(args)
+    files = load_code_files()
+    file_name, code = _select_python_workflow_file(files, payload.file_name)
+    encoded = base64.b64encode(code.encode("utf-8")).decode("ascii")
+    safe_file_name = os.path.basename(file_name) or "workflow.py"
+    launcher = f"""
+import base64
+import pathlib
+import runpy
+
+code = base64.b64decode({encoded!r}).decode("utf-8")
+path = pathlib.Path({safe_file_name!r})
+path.write_text(code, encoding="utf-8")
+runpy.run_path(str(path), run_name="__main__")
+""".strip()
+    command = f"python -c {shlex.quote(launcher)}"
+    result = await run_local_viktor_shell_commands(
+        commands=[command],
+        app_urls=payload.app_urls,
+        timeout_ms=payload.timeout_ms,
+    )
+    response = {
+        "file_name": file_name,
+        "working_directory": result.get("working_directory"),
+        "allowed_domains": result.get("allowed_domains"),
+        "commands": result.get("commands", []),
+    }
+    _storage_set_json("latest_workflow_code_run", response)
+    return json.dumps(response, indent=2)
+
+
+def run_workflow_code_tool() -> Any:
+    from agents import FunctionTool
+
+    return FunctionTool(
+        name="run_workflow_code",
+        description=(
+            "Execute a saved Python file from the Monaco workflow code WebView in "
+            "the constrained local VIKTOR shell. The shell exposes TOKEN_VK_APP "
+            "and permits Python requests to allowed VIKTOR REST domains."
+        ),
+        params_json_schema=RunWorkflowCodeArgs.model_json_schema(),
+        on_invoke_tool=run_workflow_code_func,
+        strict_json_schema=False,
+    )
+
+
 def get_viktor_api_tools() -> list[Any]:
     return [
         inspect_viktor_app_tool(),
@@ -681,4 +764,5 @@ def get_viktor_api_tools() -> list[Any]:
         generate_viktor_bridge_code_tool(),
         save_workflow_code_tool(),
         show_hide_code_editor_tool(),
+        run_workflow_code_tool(),
     ]

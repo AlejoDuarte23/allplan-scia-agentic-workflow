@@ -1,0 +1,1895 @@
+{
+  "run_at": "2026-05-18T17:09:01.606432+00:00",
+  "urls": [
+    "https://demo.viktor.ai/workspaces/2564/app/editor/12049",
+    "https://demo.viktor.ai/workspaces/2563/app/editor/12048",
+    "https://demo.viktor.ai/workspaces/2544/app/editor/12042",
+    "https://demo.viktor.ai/workspaces/2541/app/editor/12027",
+    "https://demo.viktor.ai/workspaces/2515/app/editor/12040"
+  ],
+  "apps": [
+    {
+      "url": "https://demo.viktor.ai/workspaces/2564/app/editor/12049",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2564,
+      "entity_id": 12049,
+      "entity": {
+        "name": "Calculation 1",
+        "entity_type": 3922,
+        "entity_type_name": "Controller",
+        "properties": {
+          "tab_input": {
+            "sec_file": {
+              "cpt_file": 20631
+            },
+            "sec_pile": {
+              "pile_tip_level": -17,
+              "pile_diameter": 0.5,
+              "pile_shape": "Round",
+              "pile_type": "Bored pile",
+              "surface_level": -0.88
+            },
+            "sec_load": {
+              "design_load": 1100
+            }
+          }
+        }
+      },
+      "entity_type": {
+        "id": 3922,
+        "name": "Controller",
+        "class_name": "Controller"
+      },
+      "role": "pile_capacity_cpt",
+      "fields": [
+        {
+          "path": "tab_input.sec_file.cpt_file",
+          "label": "Upload BRO CPT XML file",
+          "type": "file",
+          "default": null,
+          "metadata": [
+            "label: Upload BRO CPT XML file",
+            "description: BRO CPT XML file (dispatchDataResponse format)",
+            "param_type: file"
+          ]
+        },
+        {
+          "path": "tab_input.sec_pile.pile_tip_level",
+          "label": "Pile tip level",
+          "type": "number",
+          "default": -17,
+          "metadata": [
+            "label: Pile tip level",
+            "description: Depth of pile tip relative to NAP (negative = below NAP)",
+            "default: -17",
+            "suffix: m NAP",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_input.sec_pile.pile_diameter",
+          "label": "Pile diameter / width",
+          "type": "number",
+          "default": 0.4,
+          "metadata": [
+            "label: Pile diameter / width",
+            "description: Outer diameter (round) or side width (square)",
+            "default: 0.4",
+            "suffix: m",
+            "variant: standard",
+            "options: max=3, min=0.1",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_input.sec_pile.pile_shape",
+          "label": "Pile cross-section",
+          "type": "select",
+          "default": "Round",
+          "metadata": [
+            "label: Pile cross-section",
+            "default: 'Round'",
+            "variant: standard",
+            "options: Round, Square",
+            "param_type: select"
+          ]
+        },
+        {
+          "path": "tab_input.sec_pile.pile_type",
+          "label": "Pile type",
+          "type": "select",
+          "default": "Bored pile",
+          "metadata": [
+            "label: Pile type",
+            "description: Determines αp and αs factors per NEN 9997-1 Table A.3",
+            "default: 'Bored pile'",
+            "variant: standard",
+            "options: Driven prefab concrete, Bored pile, CFA pile, Screw pile",
+            "param_type: select"
+          ]
+        },
+        {
+          "path": "tab_input.sec_pile.surface_level",
+          "label": "Surface level (ground level)",
+          "type": "number",
+          "default": -0.88,
+          "metadata": [
+            "label: Surface level (ground level)",
+            "description: Pre-filled from CPT header; adjust if needed",
+            "default: -0.88",
+            "suffix: m NAP",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_input.sec_load.design_load",
+          "label": "Required compressive pile load (Fc;d)",
+          "type": "number",
+          "default": 1100,
+          "metadata": [
+            "label: Required compressive pile load (Fc;d)",
+            "description: Design compressive force the pile must resist (ULS, compression only)",
+            "default: 1100",
+            "suffix: kN",
+            "variant: standard",
+            "options: min=1",
+            "param_type: number"
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "kind": "view",
+          "method_name": "view_cpt",
+          "source": "entity_type",
+          "label": "CPT Profile",
+          "view_type": "plotly",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_results",
+          "source": "entity_type",
+          "label": "Bearing Capacity Results",
+          "view_type": "data",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "dataview",
+          "expected_result_kind": "data"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_depth_curve",
+          "source": "entity_type",
+          "label": "Bearing Capacity vs. Depth",
+          "view_type": "plotly",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_required_depth",
+          "source": "entity_type",
+          "label": "Required Pile Depth",
+          "view_type": "data",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "dataview",
+          "expected_result_kind": "data"
+        }
+      ],
+      "runtime_params": {
+        "tab_input": {
+          "sec_pile": {
+            "pile_tip_level": -17,
+            "pile_diameter": 0.5,
+            "pile_shape": "Round",
+            "pile_type": "Bored pile",
+            "surface_level": -0.88
+          },
+          "sec_load": {
+            "design_load": 1100
+          },
+          "sec_file": {
+            "cpt_file": 20631
+          }
+        }
+      },
+      "probes": {
+        "view_results": {
+          "status": "success",
+          "result_kind": "data",
+          "result_keys": [
+            "data"
+          ],
+          "summary": {},
+          "flattened_data": {
+            "pile_type_item": {
+              "group": "pile_info",
+              "label": "Pile type",
+              "value": "Bored pile",
+              "display_value": "Bored pile",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "pile_shape_item": {
+              "group": "pile_info",
+              "label": "Cross-section",
+              "value": "Round",
+              "display_value": "Round",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "diameter_item": {
+              "group": "pile_info",
+              "label": "Diameter / width",
+              "value": 0.5,
+              "display_value": "0.5",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "length_item": {
+              "group": "pile_info",
+              "label": "Pile length",
+              "value": 16.12,
+              "display_value": "16.12",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "tip_item": {
+              "group": "pile_info",
+              "label": "Pile tip level",
+              "value": -17,
+              "display_value": "-17",
+              "unit": "m NAP",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "alpha_p_item": {
+              "group": "calc_params",
+              "label": "αp (tip factor)",
+              "value": 0.5,
+              "display_value": "0.5",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "qc_tip_item": {
+              "group": "calc_params",
+              "label": "qc;tip (4D–8D average)",
+              "value": 9.55,
+              "display_value": "9.55",
+              "unit": "MPa",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "xi3_item": {
+              "group": "calc_params",
+              "label": "ξ3 (correlation factor)",
+              "value": 1.33,
+              "display_value": "1.33",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "rb_cal": {
+              "group": "results",
+              "label": "Rb;cal (base resistance)",
+              "value": 937.9,
+              "display_value": "937.9",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "rs_cal": {
+              "group": "results",
+              "label": "Rs;cal (shaft resistance)",
+              "value": 802.2,
+              "display_value": "802.2",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "rc_cal": {
+              "group": "results",
+              "label": "Rc;cal (total characteristic)",
+              "value": 1740.2,
+              "display_value": "1740.2",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "rc_d": {
+              "group": "results",
+              "label": "Rc;d (design value)",
+              "value": 1090.3,
+              "display_value": "1090.3",
+              "unit": "kN",
+              "status": "success",
+              "status_message": "",
+              "explanation": "Rc;d = Rc;cal / (ξ3 × γ) = 1740.2 / (1.33 × 1.2)"
+            },
+            "fc_d": {
+              "group": "results",
+              "label": "Fc;d (applied design load)",
+              "value": 1100,
+              "display_value": "1100",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "util": {
+              "group": "results",
+              "label": "Utilisation Fc;d / Rc;d",
+              "value": 1.009,
+              "display_value": "1.009",
+              "unit": "",
+              "status": "error",
+              "status_message": "",
+              "explanation": "❌ FAIL – increase pile depth or diameter"
+            }
+          }
+        },
+        "view_required_depth": {
+          "status": "success",
+          "result_kind": "data",
+          "result_keys": [
+            "data"
+          ],
+          "summary": {},
+          "flattened_data": {
+            "fc_d_item": {
+              "group": "input_summary",
+              "label": "Required load Fc;d",
+              "value": 1100,
+              "display_value": "1100",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "pile_type_item": {
+              "group": "input_summary",
+              "label": "Pile type",
+              "value": "Bored pile",
+              "display_value": "Bored pile",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "diameter_item": {
+              "group": "input_summary",
+              "label": "Diameter / width",
+              "value": 0.5,
+              "display_value": "0.5",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "req_length_item": {
+              "group": "required",
+              "label": "Required pile length",
+              "value": 16.25,
+              "display_value": "16.25",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "req_Rcd_item": {
+              "group": "required",
+              "label": "Rc;d at required depth",
+              "value": 1107.2,
+              "display_value": "1107.2",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "req_Rb_item": {
+              "group": "required",
+              "label": "Rb;cal at required depth",
+              "value": 946.6,
+              "display_value": "946.6",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "req_Rs_item": {
+              "group": "required",
+              "label": "Rs;cal at required depth",
+              "value": 820.5,
+              "display_value": "820.5",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "url": "https://demo.viktor.ai/workspaces/2563/app/editor/12048",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2563,
+      "entity_id": 12048,
+      "entity": {
+        "name": "a7f8ebe1-dc4a-4756-ba32-ebbe47995600",
+        "entity_type": 3921,
+        "entity_type_name": "Controller",
+        "properties": {
+          "location": {
+            "lat": 51.9694,
+            "lon": 5.0963
+          },
+          "min_depth": 20.0
+        }
+      },
+      "entity_type": {
+        "id": 3921,
+        "name": "Controller",
+        "class_name": "Controller"
+      },
+      "role": "cpt_locator",
+      "fields": [
+        {
+          "path": "location",
+          "label": "Select location",
+          "type": "geo_point",
+          "default": {
+            "lat": 51.9694,
+            "lon": 5.0963
+          },
+          "metadata": [
+            "label: Select location",
+            "description: Click on the map to select a location in the Netherlands.",
+            "default: {'lat': 51.9694, 'lon': 5.0963}",
+            "param_type: geo_point"
+          ]
+        },
+        {
+          "path": "min_depth",
+          "label": "Minimum depth",
+          "type": "number",
+          "default": 20,
+          "metadata": [
+            "label: Minimum depth",
+            "description: Only show CPTs with a final depth greater than or equal to this value.",
+            "default: 20",
+            "suffix: m",
+            "variant: standard",
+            "options: min=0",
+            "param_type: number"
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "kind": "view",
+          "method_name": "map_view",
+          "source": "entity_type",
+          "label": "Nearest CPT",
+          "view_type": "geojson_and_data",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "geojson_and_data_view",
+          "expected_result_kind": "geojson_and_data"
+        },
+        {
+          "kind": "view",
+          "method_name": "cpt_profile_view",
+          "source": "entity_type",
+          "label": "📈 CPT Profile",
+          "view_type": "plotly",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "button",
+          "method_name": "download_cpt_xml",
+          "source": "parametrization",
+          "label": "⬇ Download CPT XML",
+          "view_type": null,
+          "automatic_update": null,
+          "source_path": [
+            "download_xml"
+          ],
+          "raw_node_type": "download-button",
+          "method_classification": "download_button",
+          "expected_result_kind": "download"
+        }
+      ],
+      "runtime_params": {
+        "location": {
+          "lat": 51.9694,
+          "lon": 5.0963
+        },
+        "min_depth": 20.0
+      },
+      "probes": {
+        "map_view": {
+          "status": "success",
+          "result_kind": "data",
+          "result_keys": [
+            "data",
+            "geojson"
+          ],
+          "summary": {},
+          "flattened_data": {
+            "selected": {
+              "group": "location",
+              "label": "Selected location",
+              "value": "51.96940, 5.09630",
+              "display_value": "51.96940, 5.09630",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "nearest": {
+              "group": "location",
+              "label": "Nearest CPT",
+              "value": "CPT000000066733",
+              "display_value": "CPT000000066733",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "distance": {
+              "group": "location",
+              "label": "Distance",
+              "value": 58.9,
+              "display_value": "58.9",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "bro_id": {
+              "group": "characteristics",
+              "label": "BRO ID",
+              "value": "CPT000000066733",
+              "display_value": "CPT000000066733",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "registration_status": {
+              "group": "characteristics",
+              "label": "Registration status",
+              "value": "voltooid",
+              "display_value": "voltooid",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "accountable_party": {
+              "group": "characteristics",
+              "label": "Accountable party",
+              "value": "50200097",
+              "display_value": "50200097",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "research_date": {
+              "group": "characteristics",
+              "label": "Research date",
+              "value": "2013-06-25",
+              "display_value": "2013-06-25",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "final_depth": {
+              "group": "characteristics",
+              "label": "Final depth",
+              "value": "34.774 m",
+              "display_value": "34.774 m",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "quality_class": {
+              "group": "characteristics",
+              "label": "Quality class",
+              "value": "klasse2",
+              "display_value": "klasse2",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "cpt_standard": {
+              "group": "characteristics",
+              "label": "CPT standard",
+              "value": "NEN5140",
+              "display_value": "NEN5140",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "cone_surface_area": {
+              "group": "characteristics",
+              "label": "Cone surface area",
+              "value": "1000 mm2",
+              "display_value": "1000 mm2",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "cone_surface_quotient": {
+              "group": "characteristics",
+              "label": "Cone surface quotient",
+              "value": "0.75",
+              "display_value": "0.75",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            }
+          },
+          "geojson_feature_count": 3
+        },
+        "download_cpt_xml": {
+          "status": "success",
+          "result_kind": "download",
+          "result_keys": [
+            "download"
+          ],
+          "summary": {
+            "url_present": true,
+            "url_redacted": "[signed download url omitted]"
+          },
+          "download": {
+            "url_present": true,
+            "host": "viktor-storage-eu1.s3.amazonaws.com",
+            "url_redacted": "[signed download url omitted]"
+          }
+        }
+      }
+    },
+    {
+      "url": "https://demo.viktor.ai/workspaces/2544/app/editor/12042",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2544,
+      "entity_id": 12042,
+      "entity": {
+        "name": "Turbine selector workflow copy",
+        "entity_type": 3906,
+        "entity_type_name": "Controller",
+        "properties": {
+          "turbine_model": "Siemens Gamesa SG 5.0-145"
+        }
+      },
+      "entity_type": {
+        "id": 3906,
+        "name": "Controller",
+        "class_name": "Controller"
+      },
+      "role": "turbine_load_source",
+      "fields": [
+        {
+          "path": "turbine_model",
+          "label": "Turbine model",
+          "type": "select",
+          "default": "Vestas V150-4.5 MW",
+          "metadata": [
+            "label: Turbine model",
+            "description: Select one of the 10 most common state-of-the-art onshore wind turbines.",
+            "default: 'Vestas V150-4.5 MW'",
+            "variant: standard",
+            "options: Vestas V150-4.5 MW, Vestas V162-6.2 MW, Siemens Gamesa SG 5.0-145, Siemens Gamesa SG 6.6-170, GE Vernova 4.5-158, Nordex N163/5.X, Enercon E-160 EP5, Goldwind GW175-6.0, Envision EN-156/4.5, Ming Yang MySE 5.5-155",
+            "param_type: select"
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "kind": "view",
+          "method_name": "view_turbine_data",
+          "source": "entity_type",
+          "label": "Turbine Parameters",
+          "view_type": "data",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "dataview",
+          "expected_result_kind": "data"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_schematic",
+          "source": "entity_type",
+          "label": "Turbine Schematic",
+          "view_type": "plotly",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_comparison",
+          "source": "entity_type",
+          "label": "Turbine Comparison",
+          "view_type": "plotly",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        }
+      ],
+      "runtime_params": {
+        "turbine_model": "Siemens Gamesa SG 5.0-145"
+      },
+      "probes": {
+        "view_turbine_data": {
+          "status": "success",
+          "result_kind": "data",
+          "result_keys": [
+            "data"
+          ],
+          "summary": {},
+          "flattened_data": {
+            "capacity": {
+              "group": "general",
+              "label": "Rated capacity",
+              "value": 5,
+              "display_value": "5.0",
+              "unit": "MW",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Nameplate power output of the turbine at rated wind speed."
+            },
+            "hub_height": {
+              "group": "general",
+              "label": "Hub height",
+              "value": 105,
+              "display_value": "105",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Distance from ground level to the rotor hub centre."
+            },
+            "base_diameter": {
+              "group": "tower",
+              "label": "Base diameter",
+              "value": 4.2,
+              "display_value": "4.2",
+              "unit": "m",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Outer diameter of the tower at ground level (flange connection)."
+            },
+            "base_moment": {
+              "group": "tower",
+              "label": "Max. moment at base",
+              "value": 155925,
+              "display_value": "155925.0",
+              "unit": "kNm",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Extreme design moment = thrust (1100 kN) × hub height (105 m) × load factor (1.35), per IEC 61400-1."
+            },
+            "base_horiz_force": {
+              "group": "tower",
+              "label": "Max. horizontal force at base",
+              "value": 1485,
+              "display_value": "1485.0",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Extreme design shear = thrust (1100 kN) × load factor (1.35), per IEC 61400-1."
+            },
+            "base_vert_force": {
+              "group": "tower",
+              "label": "Max. vertical force at base",
+              "value": 3973,
+              "display_value": "3973.0",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Vertical force = total weight (405 t) × g (9.81 m/s²). Represents the gravitational load transferred to the foundation."
+            },
+            "rna_weight": {
+              "group": "weight",
+              "label": "Rotor-Nacelle Assembly (RNA)",
+              "value": 110,
+              "display_value": "110",
+              "unit": "t",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Combined weight of rotor blades, hub and nacelle."
+            },
+            "tower_weight": {
+              "group": "weight",
+              "label": "Tower",
+              "value": 295,
+              "display_value": "295",
+              "unit": "t",
+              "status": "info",
+              "status_message": "",
+              "explanation": "Estimated steel tower weight for the selected hub height."
+            },
+            "total_weight": {
+              "group": "weight",
+              "label": "Total turbine weight",
+              "value": 405,
+              "display_value": "405",
+              "unit": "t",
+              "status": "info",
+              "status_message": "",
+              "explanation": "RNA + tower weight (foundation not included)."
+            }
+          }
+        }
+      }
+    },
+    {
+      "url": "https://demo.viktor.ai/workspaces/2541/app/editor/12027",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2541,
+      "entity_id": 12027,
+      "entity": {
+        "name": "Section 1",
+        "entity_type": 3903,
+        "entity_type_name": "Controller",
+        "properties": {
+          "tab_geometry": {
+            "width": 1000,
+            "height": 3000,
+            "cover": 30,
+            "stirrup_dia": 8,
+            "spacing_bottom": 100,
+            "dia_bottom": 32,
+            "spacing_top": 200,
+            "dia_top": 32
+          },
+          "tab_loading": {
+            "concrete_class": "C25/30",
+            "steel_grade": "B500",
+            "combinations": [
+              {
+                "label": "LC1",
+                "M_Ed": -4085.95,
+                "N_Ed": 0
+              },
+              {
+                "label": "LC2",
+                "M_Ed": 7483.99,
+                "N_Ed": 51.73
+              }
+            ]
+          },
+          "tab_optimise": {
+            "spacing_min": 50
+          }
+        }
+      },
+      "entity_type": {
+        "id": 3903,
+        "name": "Controller",
+        "class_name": "Controller"
+      },
+      "role": "reinforced_concrete_section",
+      "fields": [
+        {
+          "path": "tab_geometry.width",
+          "label": "Width",
+          "type": "number",
+          "default": 1000,
+          "metadata": [
+            "label: Width",
+            "default: 1000",
+            "suffix: mm",
+            "variant: standard",
+            "options: min=50",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_geometry.height",
+          "label": "Height",
+          "type": "number",
+          "default": 3000,
+          "metadata": [
+            "label: Height",
+            "default: 3000",
+            "suffix: mm",
+            "variant: standard",
+            "options: min=50",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_geometry.cover",
+          "label": "Clear cover",
+          "type": "number",
+          "default": 50,
+          "metadata": [
+            "label: Clear cover",
+            "default: 50",
+            "suffix: mm",
+            "variant: standard",
+            "options: min=10",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_geometry.stirrup_dia",
+          "label": "Stirrup diameter",
+          "type": "number",
+          "default": 10,
+          "metadata": [
+            "label: Stirrup diameter",
+            "default: 10",
+            "suffix: mm",
+            "variant: standard",
+            "options: min=4",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_geometry.spacing_bottom",
+          "label": "Centre-to-centre spacing",
+          "type": "number",
+          "default": 200,
+          "metadata": [
+            "label: Centre-to-centre spacing",
+            "description: Bars are distributed evenly; count is derived from this spacing and the section width.",
+            "default: 200",
+            "suffix: mm",
+            "variant: standard",
+            "options: min=100",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_geometry.dia_bottom",
+          "label": "Bottom bar diameter",
+          "type": "select",
+          "default": 25,
+          "metadata": [
+            "label: Bottom bar diameter",
+            "default: 25",
+            "suffix: mm",
+            "variant: standard",
+            "options: 8, 10, 12, 16, 20, 25, 32",
+            "param_type: select"
+          ]
+        },
+        {
+          "path": "tab_geometry.spacing_top",
+          "label": "Centre-to-centre spacing",
+          "type": "number",
+          "default": 200,
+          "metadata": [
+            "label: Centre-to-centre spacing",
+            "description: Bars are distributed evenly; count is derived from this spacing and the section width.",
+            "default: 200",
+            "suffix: mm",
+            "variant: standard",
+            "options: min=100",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "tab_geometry.dia_top",
+          "label": "Top bar diameter",
+          "type": "select",
+          "default": 16,
+          "metadata": [
+            "label: Top bar diameter",
+            "default: 16",
+            "suffix: mm",
+            "variant: standard",
+            "options: 8, 10, 12, 16, 20, 25, 32",
+            "param_type: select"
+          ]
+        },
+        {
+          "path": "tab_loading.concrete_class",
+          "label": "Concrete class",
+          "type": "select",
+          "default": "C25/30",
+          "metadata": [
+            "label: Concrete class",
+            "default: 'C25/30'",
+            "variant: standard",
+            "options: C20/25, C25/30, C30/37, C35/45, C40/50, C45/55, C50/60",
+            "param_type: select"
+          ]
+        },
+        {
+          "path": "tab_loading.steel_grade",
+          "label": "Steel grade",
+          "type": "select",
+          "default": "B500",
+          "metadata": [
+            "label: Steel grade",
+            "default: 'B500'",
+            "variant: standard",
+            "options: B500",
+            "param_type: select"
+          ]
+        },
+        {
+          "path": "tab_loading.combinations",
+          "label": "Load Combinations",
+          "type": "DynamicArray",
+          "default": [
+            {
+              "M_Ed": -1000,
+              "N_Ed": -100,
+              "label": "LC1"
+            },
+            {
+              "M_Ed": 3000,
+              "N_Ed": 100,
+              "label": "LC2"
+            }
+          ],
+          "metadata": [
+            "label: Load Combinations",
+            "default: [{'M_Ed': -1000, 'N_Ed': -100, 'label': 'LC1'}, {'M_Ed': 3000, 'N_Ed': 100, 'label': 'LC2'}]",
+            "param_type: DynamicArray",
+            "sub_types: M_Ed, N_Ed, label"
+          ]
+        },
+        {
+          "path": "tab_optimise.spacing_min",
+          "label": "Minimum allowed spacing",
+          "type": "number",
+          "default": 50,
+          "metadata": [
+            "label: Minimum allowed spacing",
+            "description: Optimiser stops and raises an error if this spacing is reached without a solution.",
+            "default: 50",
+            "suffix: mm",
+            "variant: standard",
+            "options: max=200, min=20"
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "kind": "view",
+          "method_name": "view_cross_section",
+          "source": "entity_type",
+          "label": "Cross-Section",
+          "view_type": "plotly",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_mn_diagram",
+          "source": "entity_type",
+          "label": "M-N Interaction Diagram",
+          "view_type": "plotly",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_results",
+          "source": "entity_type",
+          "label": "Results",
+          "view_type": "data",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "dataview",
+          "expected_result_kind": "data"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_optimise",
+          "source": "entity_type",
+          "label": "Optimise Reinforcement",
+          "view_type": "data",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "dataview",
+          "expected_result_kind": "data"
+        },
+        {
+          "kind": "button",
+          "method_name": "apply_optimised_params",
+          "source": "parametrization",
+          "label": "Optimize Reinforcement",
+          "view_type": null,
+          "automatic_update": null,
+          "source_path": [
+            "tab_optimise",
+            "apply_btn"
+          ],
+          "raw_node_type": "set-params-button",
+          "method_classification": "button",
+          "expected_result_kind": null
+        }
+      ],
+      "runtime_params": {
+        "tab_geometry": {
+          "width": 1000,
+          "height": 3000,
+          "cover": 30,
+          "stirrup_dia": 8,
+          "spacing_bottom": 100,
+          "dia_bottom": 32,
+          "spacing_top": 200,
+          "dia_top": 32
+        },
+        "tab_loading": {
+          "concrete_class": "C25/30",
+          "steel_grade": "B500",
+          "combinations": [
+            {
+              "label": "LC1",
+              "M_Ed": -4085.95,
+              "N_Ed": 0
+            },
+            {
+              "label": "LC2",
+              "M_Ed": 7483.99,
+              "N_Ed": 51.73
+            }
+          ]
+        },
+        "tab_optimise": {
+          "spacing_min": 50
+        }
+      },
+      "probes": {
+        "view_results": {
+          "status": "success",
+          "result_kind": "data",
+          "result_keys": [
+            "data"
+          ],
+          "summary": {},
+          "flattened_data": {
+            "width": {
+              "group": "section",
+              "label": "Width b",
+              "value": 1000,
+              "display_value": "1000",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "height": {
+              "group": "section",
+              "label": "Height h",
+              "value": 3000,
+              "display_value": "3000",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "cover": {
+              "group": "section",
+              "label": "Clear cover",
+              "value": 30,
+              "display_value": "30",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "n_bot": {
+              "group": "section",
+              "label": "Bottom bars",
+              "value": 9,
+              "display_value": "9",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "A_s": {
+              "group": "section",
+              "label": "Bottom steel A_s",
+              "value": 7238,
+              "display_value": "7238.0",
+              "unit": "mm²",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "n_top": {
+              "group": "section",
+              "label": "Top bars",
+              "value": 5,
+              "display_value": "5",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "A_s2": {
+              "group": "section",
+              "label": "Top steel A_s2",
+              "value": 4021,
+              "display_value": "4021.0",
+              "unit": "mm²",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "rho": {
+              "group": "section",
+              "label": "Total ρ",
+              "value": 0.375,
+              "display_value": "0.375",
+              "unit": "%",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "d": {
+              "group": "section",
+              "label": "Effective depth d",
+              "value": 2946,
+              "display_value": "2946.0",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "M_Ed_item": {
+              "group": "combo_1",
+              "label": "M_Ed",
+              "value": 7483.99,
+              "display_value": "7483.99",
+              "unit": "kNm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "N_Ed_item": {
+              "group": "combo_1",
+              "label": "N_Ed",
+              "value": 51.73,
+              "display_value": "51.73",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "x_item": {
+              "group": "combo_1",
+              "label": "Neutral axis x",
+              "value": 122.1,
+              "display_value": "122.1",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "M_Rd_item": {
+              "group": "combo_1",
+              "label": "M_Rd",
+              "value": 9184.47,
+              "display_value": "9184.47",
+              "unit": "kNm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "UC_item": {
+              "group": "combo_1",
+              "label": "Unity check M_Ed / M_Rd",
+              "value": 0.815,
+              "display_value": "0.815",
+              "unit": "",
+              "status": "success",
+              "status_message": "✅ OK",
+              "explanation": ""
+            }
+          }
+        },
+        "view_optimise": {
+          "status": "success",
+          "result_kind": "data",
+          "result_keys": [
+            "data"
+          ],
+          "summary": {},
+          "flattened_data": {
+            "spc_item": {
+              "group": "design",
+              "label": "Spacing ctc (top & bottom)",
+              "value": 120,
+              "display_value": "120.0",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "dia_bot_item": {
+              "group": "design",
+              "label": "Bottom bar diameter",
+              "value": 32,
+              "display_value": "32.0",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "n_bot_item": {
+              "group": "design",
+              "label": "Number of bottom bars",
+              "value": 8,
+              "display_value": "8",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "As_bot_item": {
+              "group": "design",
+              "label": "Bottom steel area A_s,bot",
+              "value": 6434,
+              "display_value": "6434.0",
+              "unit": "mm²",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "dia_top_item": {
+              "group": "design",
+              "label": "Top bar diameter",
+              "value": 25,
+              "display_value": "25.0",
+              "unit": "mm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "n_top_item": {
+              "group": "design",
+              "label": "Number of top bars",
+              "value": 8,
+              "display_value": "8",
+              "unit": "",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "As_top_item": {
+              "group": "design",
+              "label": "Top steel area A_s,top",
+              "value": 3927,
+              "display_value": "3927.0",
+              "unit": "mm²",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "rho_item": {
+              "group": "design",
+              "label": "Total reinforcement ratio ρ",
+              "value": 0.345,
+              "display_value": "0.345",
+              "unit": "%",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "m_ed": {
+              "group": "opt_LC2",
+              "label": "M_Ed",
+              "value": 7483.99,
+              "display_value": "7483.99",
+              "unit": "kNm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "n_ed": {
+              "group": "opt_LC2",
+              "label": "N_Ed",
+              "value": 51.73,
+              "display_value": "51.73",
+              "unit": "kN",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "m_rd": {
+              "group": "opt_LC2",
+              "label": "M_Rd",
+              "value": 8186.32,
+              "display_value": "8186.32",
+              "unit": "kNm",
+              "status": "info",
+              "status_message": "",
+              "explanation": ""
+            },
+            "uc": {
+              "group": "opt_LC2",
+              "label": "Unity check M_Ed / M_Rd",
+              "value": 0.914,
+              "display_value": "0.914",
+              "unit": "",
+              "status": "success",
+              "status_message": "✅ OK",
+              "explanation": ""
+            }
+          }
+        }
+      }
+    },
+    {
+      "url": "https://demo.viktor.ai/workspaces/2515/app/editor/12040",
+      "api_base": "https://demo.viktor.ai/api",
+      "workspace_id": 2515,
+      "entity_id": 12040,
+      "entity": {
+        "name": "Agent bridge from Agent sibling smoke 2026-05-17T22:08:42 - Turbine 1 2026-05-17T22:53:06Z",
+        "entity_type": 3878,
+        "entity_type_name": "Controller",
+        "properties": {
+          "step_geo": {
+            "sec_mast": {
+              "mast_diameter": 4.2,
+              "mast_vertical_load": 3973,
+              "mast_horizontal_load": 1485,
+              "mast_moment": 155925
+            },
+            "sec_slab": {
+              "slab_diameter": 20,
+              "slab_thickness": 3
+            },
+            "sec_piles": {
+              "num_piles": 30,
+              "pile_length": 20,
+              "pile_diameter": 500,
+              "pile_edge_distance": 600
+            }
+          },
+          "step_geo_tech": {
+            "sec_tip": {
+              "tip_stiffness": 50000
+            },
+            "sec_lateral": {
+              "lateral_stiffness": 10000
+            }
+          },
+          "step_analysis": {
+            "esa_file": null
+          }
+        }
+      },
+      "entity_type": {
+        "id": 3878,
+        "name": "Controller",
+        "class_name": "Controller"
+      },
+      "role": "foundation_scia",
+      "fields": [
+        {
+          "path": "step_geo.sec_mast.mast_diameter",
+          "label": "Mast diameter",
+          "type": "number",
+          "default": 5,
+          "metadata": [
+            "label: Mast diameter",
+            "description: Outer diameter of the wind turbine mast at the foundation interface.",
+            "default: 5",
+            "suffix: m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_mast.mast_vertical_load",
+          "label": "Vertical Force",
+          "type": "number",
+          "default": 4000,
+          "metadata": [
+            "label: Vertical Force",
+            "description: Vertical force applied at the mast ring (positive = downward).",
+            "default: 4000",
+            "suffix: kN",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_mast.mast_horizontal_load",
+          "label": "Horizontal Force",
+          "type": "number",
+          "default": 1500,
+          "metadata": [
+            "label: Horizontal Force",
+            "description: Horizontal force applied at the mast ring.",
+            "default: 1500",
+            "suffix: kN",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_mast.mast_moment",
+          "label": "Overturning Moment",
+          "type": "number",
+          "default": 150000,
+          "metadata": [
+            "label: Overturning Moment",
+            "description: Overturning moment applied at the mast ring (e.g. from wind on the turbine).",
+            "default: 150000",
+            "suffix: kN·m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_slab.slab_diameter",
+          "label": "Slab diameter",
+          "type": "number",
+          "default": 20,
+          "metadata": [
+            "label: Slab diameter",
+            "description: Outer diameter of the circular concrete slab.",
+            "default: 20",
+            "suffix: m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_slab.slab_thickness",
+          "label": "Slab thickness",
+          "type": "number",
+          "default": 3,
+          "metadata": [
+            "label: Slab thickness",
+            "description: Thickness of the concrete slab.",
+            "default: 3",
+            "suffix: m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_piles.num_piles",
+          "label": "Number of piles",
+          "type": "integer",
+          "default": 30,
+          "metadata": [
+            "label: Number of piles",
+            "description: Number of piles evenly spaced on the pile circle.",
+            "default: 30",
+            "options: min=6",
+            "param_type: integer"
+          ]
+        },
+        {
+          "path": "step_geo.sec_piles.pile_length",
+          "label": "Pile length",
+          "type": "number",
+          "default": 20,
+          "metadata": [
+            "label: Pile length",
+            "description: Length of each pile below the slab.",
+            "default: 20",
+            "suffix: m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_piles.pile_diameter",
+          "label": "Pile diameter",
+          "type": "number",
+          "default": 500,
+          "metadata": [
+            "label: Pile diameter",
+            "description: Diameter of each circular concrete pile.",
+            "default: 500",
+            "suffix: mm",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo.sec_piles.pile_edge_distance",
+          "label": "Edge distance (slab edge → pile centre)",
+          "type": "number",
+          "default": 600,
+          "metadata": [
+            "label: Edge distance (slab edge → pile centre)",
+            "description: Horizontal distance from the slab edge to the centre of the piles.",
+            "default: 600",
+            "suffix: mm",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo_tech.sec_tip.tip_stiffness",
+          "label": "Axial spring stiffness at pile tip",
+          "type": "number",
+          "default": 50000,
+          "metadata": [
+            "label: Axial spring stiffness at pile tip",
+            "description: Vertical spring stiffness representing the soil resistance at the pile tip (end-bearing component). Typical range: 10 000 – 200 000 kN/m depending on soil type and pile geometry.",
+            "default: 50000",
+            "suffix: kN/m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_geo_tech.sec_lateral.lateral_stiffness",
+          "label": "Horizontal spring stiffness (per unit length)",
+          "type": "number",
+          "default": 10000,
+          "metadata": [
+            "label: Horizontal spring stiffness (per unit length)",
+            "description: Distributed horizontal (lateral) spring stiffness along the pile shaft, representing the subgrade reaction of the surrounding soil. Typical range: 5 000 – 50 000 kN/m/m for medium-dense sand/clay.",
+            "default: 10000",
+            "suffix: kN/m/m",
+            "variant: standard",
+            "param_type: number"
+          ]
+        },
+        {
+          "path": "step_analysis.esa_file",
+          "label": "SCIA template (.esa)",
+          "type": "file",
+          "default": null,
+          "metadata": [
+            "label: SCIA template (.esa)",
+            "description: Upload the SCIA .esa template file. Must contain materials 'C30/37' and 'concrete_slab', and an I/O document named 'output' with Reactions for Combinations.",
+            "param_type: file"
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "kind": "view",
+          "method_name": "view_geometry",
+          "source": "entity_type",
+          "label": "3D Geometry",
+          "view_type": "geometry",
+          "automatic_update": true,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "geometry_view",
+          "expected_result_kind": "geometry"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_results",
+          "source": "entity_type",
+          "label": "Results Summary",
+          "view_type": "data",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "dataview",
+          "expected_result_kind": "data"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_pile_reactions",
+          "source": "entity_type",
+          "label": "Pile Reactions",
+          "view_type": "table",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "tableview",
+          "expected_result_kind": "table"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_2d_internal_forces",
+          "source": "entity_type",
+          "label": "2D Internal Forces",
+          "view_type": "table",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "tableview",
+          "expected_result_kind": "table"
+        },
+        {
+          "kind": "view",
+          "method_name": "view_mxd_plus_plot",
+          "source": "entity_type",
+          "label": "2D Moment Contour Plots",
+          "view_type": "plotly",
+          "automatic_update": false,
+          "source_path": [],
+          "raw_node_type": null,
+          "method_classification": "plotlyview",
+          "expected_result_kind": "plotly"
+        },
+        {
+          "kind": "button",
+          "method_name": "download_scia_input_xml",
+          "source": "parametrization",
+          "label": "Download SCIA input XML",
+          "view_type": null,
+          "automatic_update": null,
+          "source_path": [
+            "step_analysis",
+            "download_xml"
+          ],
+          "raw_node_type": "download-button",
+          "method_classification": "download_button",
+          "expected_result_kind": "download"
+        },
+        {
+          "kind": "button",
+          "method_name": "download_scia_input_def",
+          "source": "parametrization",
+          "label": "Download SCIA .def file",
+          "view_type": null,
+          "automatic_update": null,
+          "source_path": [
+            "step_analysis",
+            "download_def"
+          ],
+          "raw_node_type": "download-button",
+          "method_classification": "download_button",
+          "expected_result_kind": "download"
+        }
+      ],
+      "runtime_params": {
+        "step_geo": {
+          "sec_mast": {
+            "mast_diameter": 4.2,
+            "mast_vertical_load": 3973,
+            "mast_horizontal_load": 1485,
+            "mast_moment": 155925
+          },
+          "sec_slab": {
+            "slab_diameter": 20,
+            "slab_thickness": 3
+          },
+          "sec_piles": {
+            "num_piles": 30,
+            "pile_length": 20,
+            "pile_diameter": 500,
+            "pile_edge_distance": 600
+          }
+        },
+        "step_geo_tech": {
+          "sec_tip": {
+            "tip_stiffness": 50000
+          },
+          "sec_lateral": {
+            "lateral_stiffness": 10000
+          }
+        },
+        "step_analysis": {
+          "esa_file": null
+        }
+      },
+      "probes": {
+        "view_results": {
+          "status": "failed",
+          "result_kind": null,
+          "result_keys": [],
+          "summary": {}
+        },
+        "view_pile_reactions": {
+          "status": "failed",
+          "result_kind": null,
+          "result_keys": [],
+          "summary": {}
+        },
+        "view_2d_internal_forces": {
+          "status": "failed",
+          "result_kind": null,
+          "result_keys": [],
+          "summary": {}
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "cpt_locator",
+      "to": "pile_capacity_cpt",
+      "status": "candidate_file_bridge",
+      "mapping": "download_cpt_xml output -> tab_input.sec_file.cpt_file",
+      "note": "The source produces a signed XML download. The downstream expects a VIKTOR file id, so the bridge needs a file upload/registration step."
+    },
+    {
+      "from": "turbine_load_source",
+      "to": "foundation_scia",
+      "status": "proven_data_mapping",
+      "mapping": {
+        "base_diameter": "step_geo.sec_mast.mast_diameter",
+        "base_vert_force": "step_geo.sec_mast.mast_vertical_load",
+        "base_horiz_force": "step_geo.sec_mast.mast_horizontal_load",
+        "base_moment": "step_geo.sec_mast.mast_moment"
+      }
+    },
+    {
+      "from": "foundation_scia",
+      "to": "pile_capacity_cpt",
+      "status": "blocked_until_scia_results",
+      "mapping": "view_pile_reactions max compression -> tab_input.sec_load.design_load",
+      "note": "Current SCIA result views fail because step_analysis.esa_file is null."
+    },
+    {
+      "from": "pile_capacity_cpt",
+      "to": "foundation_scia",
+      "status": "candidate_iterative_update",
+      "mapping": {
+        "req_length_item": "step_geo.sec_piles.pile_length",
+        "diameter_item": "step_geo.sec_piles.pile_diameter"
+      },
+      "note": "This is an iterative sizing edge, not a simple one-way pipeline."
+    },
+    {
+      "from": "foundation_scia",
+      "to": "reinforced_concrete_section",
+      "status": "blocked_until_scia_results",
+      "mapping": "view_2d_internal_forces envelopes -> tab_loading.combinations[].M_Ed/N_Ed",
+      "note": "The rebar app is ready, but the upstream SCIA data is currently unavailable."
+    }
+  ]
+}

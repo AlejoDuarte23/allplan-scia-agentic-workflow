@@ -6,6 +6,8 @@ Rules:
 
 - Use `python -c "..."` for API calls and JSON processing.
 - `TOKEN_VK_APP` is available in the process environment. Never print it.
+- Use Python `requests` for generated workflow bridge code. The sandbox should
+  interact with VIKTOR through the REST API, not through the VIKTOR SDK.
 - The executor only allows `python`, `python3`, and `curl`; it blocks shell pipes, redirects, and common filesystem commands.
 - Network calls from Python are intended only for allowed VIKTOR domains such as `demo.viktor.ai`.
 - Return final answers as compact JSON when the task asks for API results or entity creation details.

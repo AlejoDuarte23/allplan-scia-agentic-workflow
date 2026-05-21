@@ -32,6 +32,7 @@ TOOL_DISPLAY_NAMES: dict[str, str] = {
     "generate_viktor_bridge_code": "Generate VIKTOR Bridge Code",
     "save_workflow_code": "Save Workflow Code",
     "show_hide_code_editor": "Show/Hide Code Editor",
+    "run_workflow_code": "Run Workflow Code",
     "viktor_local_shell": "VIKTOR Local Shell",
     "shell": "VIKTOR Local Shell",
     "generate_table": "Generate Table",
